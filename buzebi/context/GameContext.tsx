@@ -1,5 +1,5 @@
 "use client"
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import React, { createContext, useContext, useState, ReactNode, Dispatch, SetStateAction } from "react";
 
 
 interface GameContextType {
@@ -7,6 +7,8 @@ interface GameContextType {
   setStart: (value: boolean) => void;
   flies: Array<[number, number, number]>;
   setFlies: (flies: Array<[number, number, number]>) => void;
+  score: number, 
+  setScore: Dispatch<SetStateAction<number>>;
 }
 
 
@@ -20,9 +22,10 @@ interface GameProviderProps {
 export const GameProvider = ({ children }: GameProviderProps) => {
   const [start, setStart] = useState(false);
   const [flies, setFlies] = useState<Array<[number, number, number]>>([]);
+  const [score, setScore] = useState(0); 
 
   return (
-    <GameContext.Provider value={{ start, setStart, flies, setFlies}}>
+    <GameContext.Provider value={{ start, setStart, flies, setFlies, score, setScore}}>
       {children}
     </GameContext.Provider>
   );

@@ -1,5 +1,6 @@
 "use client"
 import Experience from '@/components/Experience';
+import Header from '@/components/Header';
 import Lights from '@/components/Lights';
 import { useGame } from '@/context/GameContext';
 import { OrbitControls } from '@react-three/drei';
@@ -8,37 +9,39 @@ import { useContext, useState } from 'react';
 
 export default function Home() {
 
-   const {start, flies} = useGame();
+   const {start, flies, setScore} = useGame();
 
    const [userAnswer, setUserAnswer] = useState("");
+ 
    
   // correct answer
    const calculateAnswer = () => {
-      const actual = flies.length;
-      const guess = Number(userAnswer);
+    const actual = flies.length;
+    const guess = Number(userAnswer);
+    const difference = Math.abs(actual - guess);
 
-      const difference = Math.abs(actual - guess);
+    let gained = 0;
 
-      let score = 0;
+    if (difference === 0) {
+      gained = 50;
+      console.log("Perfect! 50 points");
+    } else if (difference <= 100) {
+      gained = 20;
+      console.log(`Close! You are off by ${difference}, score 20`);
+    } else {
+      gained = 0;
+      console.log(`Not close. You are off by ${difference}, score 0`);
+    }
 
-      if(difference === 0) {
-        score = 50;
-        console.log("perfect! 50 points")
-      }else if(difference <= 200) {
-        score = 20;
-        console.log("close, score 20");
-      }else {
-      score = 0;
-      console.log("not close. 0 points");
-      }
-
-      return score;
+    
+    setScore(prev => prev + gained);
    }
 
 
   return (
     <>
      <div className="relative w-full h-screen">
+      <Header />
 
   <Canvas
     camera={{
@@ -54,8 +57,10 @@ export default function Home() {
   </Canvas>
 
 
-  <div className="absolute bottom-56 left-[650px] text-white z-10">
+  <div className="absolute bottom-56 left-[620px] text-white z-10">
+  
      {start && <div className='flex gap-4 '>
+     
       <div className="relative w-60 group ">
   <span
     className="absolute -left-0.5 top-2 bottom-2 w-1.5 rounded bg-linear-to-b from-indigo-500 to-purple-500 opacity-70 transition-all duration-300 group-focus-within:opacity-100"
@@ -79,6 +84,9 @@ export default function Home() {
 <button className='cursor-pointer' onClick={calculateAnswer}>პასუხი</button>
 
       </div>}
+
+
+    
   </div>
 
 
