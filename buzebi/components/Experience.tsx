@@ -1,6 +1,7 @@
 import { useGLTF, useTexture } from "@react-three/drei"
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import * as THREE from 'three'
+import gsap from 'gsap'
 
 const Experience = () => {
   
@@ -8,6 +9,8 @@ const Experience = () => {
     const room = useGLTF('./old_room.glb');
 
     const startTexture = useTexture('./start.png');
+
+    let btnRef = useRef<THREE.Mesh>(null!);
 
 
     useEffect(() => {
@@ -23,14 +26,26 @@ const Experience = () => {
               
             }
        })
-    }, [room])
+    }, [room]);
+
+    
+
+    const clickEffect = () => {
+        gsap.to(btnRef.current.position, {
+            y: -0.2,
+            duration: 0.1,
+            ease: 'power2.in',
+            yoyo: true,
+            repeat: 1,
+          })
+    }
 
 
   return (
    <>
      <primitive object={room.scene} scale = {0.025} position = {[-0.8, -0.4, 0]} />
 
-     <mesh scale = {0.5}  position = {[-0.3, 0.40, 0.3]}>
+     <mesh ref={btnRef} scale = {0.5}  position = {[-0.3, 0.40, 0.3]} onClick={clickEffect}>
         <boxGeometry args = {[2.5,  0.05]}  />
         <meshBasicMaterial map = {startTexture} />
      </mesh>
