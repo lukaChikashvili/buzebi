@@ -8,7 +8,7 @@ const Experience = () => {
 
   return (
    <>
-     <primitive object={room.scene} />
+     <primitive object={room.scene} scale = {0.025} position = {[-0.8, -0.4, 0]} />
    </>
   )
 }
