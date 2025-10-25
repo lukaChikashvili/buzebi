@@ -34,16 +34,16 @@ const Experience = () => {
     
 
     const clickEffect = () => {
-        gsap.to(btnRef.current.position, {
-            y: -0.2,
-            duration: 0.1,
-            ease: 'power2.in',
-            yoyo: true,
-            repeat: 1,
-          });
-
-          setStart(true);
-
+        
+      
+            setStart(true)
+          
+            gsap.to(btnRef.current.position, {
+              y: -10,
+              duration: 1,
+              ease: 'back.out'
+            })
+          
     }
 
 

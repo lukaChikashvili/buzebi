@@ -2,9 +2,17 @@
 
 import { useState } from "react"
 import Fly from "./Fly";
+import { useThree } from "@react-three/fiber";
+import gsap from 'gsap'
 
 const Flies = ({start}: {start: boolean}) => {
-    const [flies, setFlies] = useState<Array<[number, number, number]>>([])
+
+    const { camera } = useThree();
+
+
+    const [flies, setFlies] = useState<Array<[number, number, number]>>([]);
+
+   
 
   if (start && flies.length === 0) {
     const count = Math.floor(Math.random() * 30) + 100
@@ -22,7 +30,10 @@ const Flies = ({start}: {start: boolean}) => {
       newFlies.push([centerX + offsetX, centerY + offsetY, centerZ + offsetZ])
     }
 
-    setFlies(newFlies)
+    setFlies(newFlies);
+
+    
+
   }
 
 
