@@ -1,9 +1,12 @@
 import { useGLTF, useTexture } from "@react-three/drei"
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as THREE from 'three'
 import gsap from 'gsap'
+import Flies from "./Flies";
 
 const Experience = () => {
+
+    const [start, setStart] = useState(false)
   
     //  room model
     const room = useGLTF('./old_room.glb');
@@ -37,7 +40,10 @@ const Experience = () => {
             ease: 'power2.in',
             yoyo: true,
             repeat: 1,
-          })
+          });
+
+          setStart(true);
+
     }
 
 
@@ -49,6 +55,8 @@ const Experience = () => {
         <boxGeometry args = {[2.5,  0.05]}  />
         <meshBasicMaterial map = {startTexture} />
      </mesh>
+
+     <Flies start = {start} />
    </>
   )
 }
