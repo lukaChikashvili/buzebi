@@ -1,4 +1,4 @@
-import { useGLTF } from "@react-three/drei"
+import { useGLTF, useTexture } from "@react-three/drei"
 import { useEffect } from "react";
 import * as THREE from 'three'
 
@@ -6,6 +6,9 @@ const Experience = () => {
   
     //  room model
     const room = useGLTF('./old_room.glb');
+
+    const startTexture = useTexture('./start.png');
+
 
     useEffect(() => {
        room.scene.traverse((child) => {
@@ -26,6 +29,11 @@ const Experience = () => {
   return (
    <>
      <primitive object={room.scene} scale = {0.025} position = {[-0.8, -0.4, 0]} />
+
+     <mesh scale = {0.5}  position = {[-0.3, 0.40, 0.3]}>
+        <boxGeometry args = {[2.5,  0.05]}  />
+        <meshBasicMaterial map = {startTexture} />
+     </mesh>
    </>
   )
 }
