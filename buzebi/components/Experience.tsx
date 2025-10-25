@@ -3,10 +3,11 @@ import { useEffect, useRef, useState } from "react";
 import * as THREE from 'three'
 import gsap from 'gsap'
 import Flies from "./Flies";
+import { useGame } from "@/context/GameContext";
 
 const Experience = () => {
 
-    const [start, setStart] = useState(false)
+    const {start, setStart} = useGame();
   
     //  room model
     const room = useGLTF('./old_room.glb');
