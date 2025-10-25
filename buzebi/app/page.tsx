@@ -4,11 +4,20 @@ import Lights from '@/components/Lights';
 import { useGame } from '@/context/GameContext';
 import { OrbitControls } from '@react-three/drei';
 import { Canvas, useThree } from '@react-three/fiber'
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 
 export default function Home() {
 
    const {start} = useGame();
+
+   const [userAnswer, setUserAnswer] = useState("");
+   
+  // correct answer
+   const calculateAnswer = () => {
+    
+   }
+
+
   return (
     <>
      <div className="relative w-full h-screen">
@@ -21,21 +30,23 @@ export default function Home() {
       far: 1000,
     }}
   >
-    <OrbitControls />
+    
     <Lights />
     <Experience />
   </Canvas>
 
 
   <div className="absolute bottom-56 left-[650px] text-white z-10">
-     {start && <div>
-      <div className="relative w-60 group">
+     {start && <div className='flex gap-4 '>
+      <div className="relative w-60 group ">
   <span
     className="absolute -left-0.5 top-2 bottom-2 w-1.5 rounded bg-linear-to-b from-indigo-500 to-purple-500 opacity-70 transition-all duration-300 group-focus-within:opacity-100"
   ></span>
   <input
     type="text"
     id="input"
+    value={userAnswer}
+    onChange={(e) => setUserAnswer(e.target.value)}
     placeholder=""
     className="peer w-full pl-6 pr-4 pt-6 pb-2 text-sm text-gray-800 bg-white border border-gray-200 rounded-lg shadow-md focus:border-transparent focus:ring-2 focus:ring-indigo-300 focus:outline-none transition-all duration-300 delay-200 placeholder-transparent"
   />
@@ -45,11 +56,14 @@ export default function Home() {
   >
     ჩაწერეთ რიცხვი
   </label>
+
 </div>
+<button className='cursor-pointer' onClick={calculateAnswer}>პასუხი</button>
+
       </div>}
   </div>
 
- 
+
  
 </div>
     </>

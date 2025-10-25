@@ -5,8 +5,8 @@ import React, { createContext, useContext, useState, ReactNode } from "react";
 interface GameContextType {
   start: boolean;
   setStart: (value: boolean) => void;
-  flyCount: number;
-  setFlyCount: (value: number) => void;
+  flies: Array<[number, number, number]>;
+  setFlies: (flies: Array<[number, number, number]>) => void;
 }
 
 
@@ -19,10 +19,10 @@ interface GameProviderProps {
 
 export const GameProvider = ({ children }: GameProviderProps) => {
   const [start, setStart] = useState(false);
-  const [flyCount, setFlyCount] = useState(0);
+  const [flies, setFlies] = useState<Array<[number, number, number]>>([]);
 
   return (
-    <GameContext.Provider value={{ start, setStart, flyCount, setFlyCount }}>
+    <GameContext.Provider value={{ start, setStart, flies, setFlies}}>
       {children}
     </GameContext.Provider>
   );

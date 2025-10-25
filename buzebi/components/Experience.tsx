@@ -4,10 +4,13 @@ import * as THREE from 'three'
 import gsap from 'gsap'
 import Flies from "./Flies";
 import { useGame } from "@/context/GameContext";
+import { useThree } from "@react-three/fiber";
 
 const Experience = () => {
 
     const {start, setStart} = useGame();
+
+    const { camera } = useThree();
   
     //  room model
     const room = useGLTF('./old_room.glb');
@@ -43,7 +46,9 @@ const Experience = () => {
               y: -10,
               duration: 1,
               ease: 'back.out'
-            })
+            });
+
+           
           
     }
 
