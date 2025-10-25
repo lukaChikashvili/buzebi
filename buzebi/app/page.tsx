@@ -8,13 +8,31 @@ import { useContext, useState } from 'react';
 
 export default function Home() {
 
-   const {start} = useGame();
+   const {start, flies} = useGame();
 
    const [userAnswer, setUserAnswer] = useState("");
    
   // correct answer
    const calculateAnswer = () => {
-    
+      const actual = flies.length;
+      const guess = Number(userAnswer);
+
+      const difference = Math.abs(actual - guess);
+
+      let score = 0;
+
+      if(difference === 0) {
+        score = 50;
+        console.log("perfect! 50 points")
+      }else if(difference <= 200) {
+        score = 20;
+        console.log("close, score 20");
+      }else {
+      score = 0;
+      console.log("not close. 0 points");
+      }
+
+      return score;
    }
 
 

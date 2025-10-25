@@ -4,13 +4,14 @@ import { useEffect, useState } from "react"
 import Fly from "./Fly";
 import { useThree } from "@react-three/fiber";
 import gsap from 'gsap'
+import { useGame } from "@/context/GameContext";
 
 const Flies = ({start}: {start: boolean}) => {
 
     const { camera } = useThree();
 
 
-    const [flies, setFlies] = useState<Array<[number, number, number]>>([]);
+   const { flies, setFlies } = useGame();
 
    
 
