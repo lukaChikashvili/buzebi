@@ -12,10 +12,17 @@ export default function Home() {
    const {start, flies, setScore} = useGame();
 
    const [userAnswer, setUserAnswer] = useState("");
+
+   const [text, setText] = useState("");
  
    
   // correct answer
    const calculateAnswer = () => {
+    if(!userAnswer) {
+      setText("ველი ცარიელია, გთხოვთ ჩაწეროთ რიცხვი ");
+      return;
+    }
+
     const actual = flies.length;
     const guess = Number(userAnswer);
     const difference = Math.abs(actual - guess);
@@ -24,13 +31,13 @@ export default function Home() {
 
     if (difference === 0) {
       gained = 50;
-      console.log("Perfect! 50 points");
+      setText("თქვენ ზუსტად გამოიცანით! 50 ქულა!")
     } else if (difference <= 100) {
       gained = 20;
-      console.log(`Close! You are off by ${difference}, score 20`);
+      setText(`თქვენ აცდით ${difference}-ით, 20 ქულა!`)
     } else {
       gained = 0;
-      console.log(`Not close. You are off by ${difference}, score 0`);
+      setText(`სამწუხაროდ, თქვენ აცდით ${difference}-ით, 0 ქულა!`)
     }
 
     
@@ -86,7 +93,9 @@ export default function Home() {
       </div>}
 
 
-    
+    <div>
+      <h2 className='mt-4 -ml-10 text-xl text-green-300 font-bold'>{text}</h2>
+    </div>
   </div>
 
 

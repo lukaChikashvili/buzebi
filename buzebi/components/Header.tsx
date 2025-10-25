@@ -11,7 +11,7 @@ const Header = () => {
       </div>
 
       <div>
-        <h1>{score}</h1>
+        <h1 className='text-5xl'>{score}</h1>
       </div>
     </div>
   )
