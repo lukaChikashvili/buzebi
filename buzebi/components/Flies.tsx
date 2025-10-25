@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Fly from "./Fly";
 import { useThree } from "@react-three/fiber";
 import gsap from 'gsap'
@@ -15,26 +15,30 @@ const Flies = ({start}: {start: boolean}) => {
    
 
   if (start && flies.length === 0) {
-    const count = Math.floor(Math.random() * 30) + 100
+    const count = Math.floor(Math.random() * 950) + 50;
     const newFlies: Array<[number, number, number]> = []
 
-    
-    const centerX = (Math.random() - 0.5) * 2
-    const centerY = 1.0 
-    const centerZ = (Math.random() - 0.5) * 2
+    const centerX = 0
+    const centerY = 0.5
+    const centerZ = 0
     
     for (let i = 0; i < count; i++) {
-      const offsetX = (Math.random() - 0.5) * 0.1
-      const offsetY = (Math.random() - 0.5) * 0.05 
-      const offsetZ = (Math.random() - 0.5) * 0.1
-      newFlies.push([centerX + offsetX, centerY + offsetY, centerZ + offsetZ])
-    }
+       
+        const offsetX = (Math.random() - 0.5) * 0.4  
+        const offsetY = (Math.random() - 0.5) * 0.2  
+        const offsetZ = (Math.random() - 0.5) * 0.4  
+        newFlies.push([centerX + offsetX, centerY + offsetY, centerZ + offsetZ])
+      }
 
-    setFlies(newFlies);
+      setFlies(newFlies)
 
-    
+      
 
   }
+
+  useEffect(() => {
+    console.log(flies)
+  })
 
 
   return (

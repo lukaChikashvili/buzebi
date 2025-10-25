@@ -11,7 +11,7 @@ interface FlyProps {
 const Fly = ({ position }: FlyProps) => {
   const ref = useRef<THREE.Mesh>(null!);
 
-  const colors = ["#1a1a1a", "#222222", "#000000"];
+  const colors = ["yellow", "gold", "Goldenrod"];
 const color = colors[Math.floor(Math.random() * colors.length)];
 
 

@@ -49,9 +49,9 @@ const Experience = () => {
 
   return (
    <>
-     <primitive object={room.scene} scale = {0.025} position = {[-0.8, -0.4, 0]} />
+     <primitive object={room.scene} scale = {0.025} position = {[-0.8, -0.8, 0]} />
 
-     <mesh ref={btnRef} scale = {0.5}  position = {[-0.3, 0.40, 0.3]} onClick={clickEffect}>
+     <mesh ref={btnRef} scale = {0.5}  position = {[-0.3, 0.01, 0.3]} onClick={clickEffect}>
         <boxGeometry args = {[2.5,  0.05]}  />
         <meshBasicMaterial map = {startTexture} />
      </mesh>
