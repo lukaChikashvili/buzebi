@@ -65,7 +65,17 @@ export default function Home() {
 
 
   <div className="absolute bottom-40 w-full flex flex-col items-center text-white z-10 px-4">
-  
+  <picture>
+    <source media="(max-width: 640px)" srcSet="./mobile.png" />
+
+    <img
+      src="/logo.png"
+      alt="Background"
+      className="fixed top-0 left-0 w-full h-full object-cover opacity-90 -z-10"
+    />
+  </picture>
+
+
   {start && (
   <div className="flex flex-col sm:flex-row gap-4 items-center">
     <div className="relative w-full sm:w-60 group">
@@ -101,7 +111,7 @@ export default function Home() {
 )}
 
 <div className="mt-4 text-center">
-  <h2 className="text-base sm:text-lg md:text-xl text-green-300 font-bold break-words max-w-xs sm:max-w-md">
+  <h2 className="text-base sm:text-lg md:text-xl text-green-300 font-bold wrap-break-words max-w-xs sm:max-w-md">
     {text}
   </h2>
 </div>
