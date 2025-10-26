@@ -75,7 +75,16 @@ export default function Home() {
     />
   </picture>
 
-
+  <div className="absolute inset-0 flex items-center justify-center z-10">
+    <button 
+      onClick={() => console.log("Button clicked!")}
+      className="btn mt-56 md:mt-36 px-8 py-3 bg-green-600 hover:bg-green-700 text-white text-lg sm:text-xl rounded-2xl shadow-lg transition-all duration-300"
+    >
+      შესვლა
+    </button>
+  </div>
+  
+  
   {start && (
   <div className="flex flex-col sm:flex-row gap-4 items-center">
     <div className="relative w-full sm:w-60 group">
