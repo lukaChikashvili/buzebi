@@ -5,7 +5,7 @@ import React from 'react'
 const Header = () => {
     const { score } = useGame();
   return (
-    <div className='w-full h-16 bg-transparent  fixed top-0 left-0 z-20 flex items-center justify-between px-12 text-white font-bold'>
+    <div className='w-full h-16 bg-transparent  fixed top-0 left-0 -z-20 flex items-center justify-between px-12 text-white font-bold '>
       <div>
          logo
       </div>

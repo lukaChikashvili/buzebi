@@ -13,7 +13,13 @@ export default function Home() {
 
    const [userAnswer, setUserAnswer] = useState("");
 
+   const [enter, setEnter] = useState(true);
+
    const [text, setText] = useState("");
+
+   const enterGame = () => {
+     setEnter(false);
+   }
  
    
   // correct answer
@@ -65,6 +71,7 @@ export default function Home() {
 
 
   <div className="absolute bottom-40 w-full flex flex-col items-center text-white z-10 px-4">
+    {enter && <>
   <picture>
     <source media="(max-width: 640px)" srcSet="./mobile.png" />
 
@@ -77,13 +84,14 @@ export default function Home() {
 
   <div className="absolute inset-0 flex items-center justify-center z-10">
     <button 
-      onClick={() => console.log("Button clicked!")}
+      onClick={enterGame}
       className="btn mt-56 md:mt-36 px-8 py-3 bg-green-600 hover:bg-green-700 text-white text-lg sm:text-xl rounded-2xl shadow-lg transition-all duration-300"
     >
       შესვლა
     </button>
   </div>
-  
+  </>
+  }
   
   {start && (
   <div className="flex flex-col sm:flex-row gap-4 items-center">
