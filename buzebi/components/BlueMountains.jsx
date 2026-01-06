@@ -1,5 +1,5 @@
 "use client"
-import { Text3D, useMatcapTexture, useTexture } from '@react-three/drei'
+import { Text3D, useGLTF, useMatcapTexture, useTexture } from '@react-three/drei'
 import React, { useRef } from 'react'
 import * as THREE from 'three'
 import { posterVertex } from '../shaders/poster/vertex'
@@ -26,6 +26,11 @@ const BlueMountains = () => {
           shaderRef.current.uniforms.uTime.value += 0.004;
         }
       })
+
+      const deskModel = useGLTF('./desk.glb');
+      const book = useGLTF('./book.glb');
+
+
     
 
   return (
@@ -57,7 +62,9 @@ const BlueMountains = () => {
         <shaderMaterial   ref={shaderRef}
         uniforms={uniforms.current} vertexShader={posterVertex} fragmentShader={posterFragment}  />
       </mesh>
-      
+
+     <primitive object={deskModel.scene} rotation = {[0, -0.5, 0]} position = {[6, 6, 12]}  scale = {0.08} />
+      <primitive object={book.scene} scale = {3.5} rotation = {[0, 0.7, 0]} position = {[3, 8, 10]} />
     </>
   )
 }
