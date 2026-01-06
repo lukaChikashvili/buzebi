@@ -1,26 +1,45 @@
 "use client"
-import { Text3D, useMatcapTexture } from '@react-three/drei'
-import React from 'react'
+import { Text3D, useMatcapTexture, useTexture } from '@react-three/drei'
+import React, { useRef } from 'react'
+import * as THREE from 'three'
+import { posterVertex } from '../shaders/poster/vertex'
+import { posterFragment } from '../shaders/poster/fragment'
+import { useFrame } from '@react-three/fiber'
 
 const BlueMountains = () => {
-    const [matcapTexture] = useMatcapTexture('1A2461_3D70DB_2C3C8F_2C6CAC', 256)
+    const [matcapTexture] = useMatcapTexture('1A2461_3D70DB_2C3C8F_2C6CAC', 256);
+
+    const texture = useTexture('./blue.jpg');
+  let shaderRef = useRef();
+
+    const uniforms = useRef({
+        uTime: { value: 0 },
+        uAmplitude: { value: 0.5 },
+        uFrequency: { value: new THREE.Vector2(1.85, 1.0) },
+        uSpeed: { value: 3.0 },
+        uTexture: { value: texture },
+      });
+
+      useFrame(({ clock }) => {
+        if (shaderRef.current) {
+          shaderRef.current.uniforms.uTime.value = clock.elapsedTime
+        }
+      })
+    
 
   return (
     <>
     
-        <Text3D font="./fonts/helvetiker_regular.typeface.json" 
-         size={ 2.75 }
-         height={ 0.2 }
-         curveSegments={ 12 }
-         bevelEnabled
-         bevelThickness={ 0.8 }
-         bevelSize={ 0.02 }
-         bevelOffset={ 0 }
-         bevelSegments={ 5 } position={[-12, 10, 15]} rotation = {[0, 0.7, 0]}>
-              {`Blue
-  Mountains`}
- <meshMatcapMaterial matcap={matcapTexture} />
-        </Text3D>
+      
+
+        <mesh
+        position={[8, 10, 5]}  
+        rotation={[0, -0.5, 0]}    
+      >
+        <planeGeometry args={[18, 10, 50,50]} /> 
+        <shaderMaterial   ref={shaderRef}
+        uniforms={uniforms.current} vertexShader={posterVertex} fragmentShader={posterFragment}  />
+      </mesh>
       
     </>
   )
