@@ -14,15 +14,15 @@ const BlueMountains = () => {
 
     const uniforms = useRef({
         uTime: { value: 0 },
-        uAmplitude: { value: 0.5 },
-        uFrequency: { value: new THREE.Vector2(1.85, 1.0) },
+        uAmplitude: { value: 0.3 },
+        uFrequency: { value: new THREE.Vector2(1.55, 2.0) },
         uSpeed: { value: 3.0 },
         uTexture: { value: texture },
       });
 
       useFrame(({ clock }) => {
         if (shaderRef.current) {
-          shaderRef.current.uniforms.uTime.value = clock.elapsedTime
+          shaderRef.current.uniforms.uTime.value += 0.004;
         }
       })
     

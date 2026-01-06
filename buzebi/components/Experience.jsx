@@ -5,6 +5,8 @@ import { useRef } from "react"
 import { useFrame } from "@react-three/fiber"
 import { Sky, Stars } from "@react-three/drei"
 import BlueMountains from "./BlueMountains"
+import Wall from "./Wall"
+import { RigidBody } from "@react-three/rapier"
 
 const Experience = () => {
 
@@ -40,7 +42,7 @@ useFrame((state) => {
     />
 
  <Stars radius={100} depth={50} count={1300} factor={4} saturation={0} fade  />
-
+<RigidBody type="fixed">
     <mesh rotation={[-Math.PI / 2, 0, 0]}>
       <planeGeometry args={[400, 200, 400, 400]} />
       <shaderMaterial
@@ -50,8 +52,9 @@ useFrame((state) => {
         side={THREE.DoubleSide}
       />
     </mesh>
-
+    </RigidBody>
     <BlueMountains />
+    <Wall />
    </>
   )
 }

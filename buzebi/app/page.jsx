@@ -3,6 +3,7 @@
 import { Canvas } from "@react-three/fiber";
 import Experience from "../components/Experience";
 import { OrbitControls } from "@react-three/drei";
+import { Physics } from "@react-three/rapier";
 
 
 export default function Home() {
@@ -18,7 +19,9 @@ export default function Home() {
         shadows
         gl={{ physicallyCorrectLights: true }}>
         <OrbitControls />
+        <Physics>
        <Experience />
+       </Physics>
       </Canvas>
     </>
   );
