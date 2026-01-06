@@ -14,7 +14,7 @@ export default function Home() {
     <>
      
 
-      <Canvas  camera={{ position: [-13, 15, 25], fov: 70, near: 0.1, far: 10000 }}
+      <Canvas  camera={{ position: [2, 14, 25], fov: 70, near: 0.1, far: 10000 }}
         shadows
         gl={{ physicallyCorrectLights: true }}>
         <OrbitControls />
