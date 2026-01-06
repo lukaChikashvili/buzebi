@@ -1,4 +1,4 @@
-import { useTexture } from '@react-three/drei';
+import { useMatcapTexture, useTexture } from '@react-three/drei';
 import { RigidBody } from '@react-three/rapier'
 import React, { useEffect, useRef } from 'react'
 import * as THREE from 'three'
@@ -6,6 +6,8 @@ import * as THREE from 'three'
 const Wall = () => {
   const ballRef = useRef(null);
   const wallTexture = useTexture('./block.jpg');
+
+  const [matcap] = useMatcapTexture('E6BF3C_5A4719_977726_FCFC82', 256);
 
  
   const rotationY = -Math.PI / 4; 
@@ -18,7 +20,7 @@ const Wall = () => {
         
         ballRef.current.setLinvel({ x: -50, y: 0, z: 0 }, true);
       }
-    }, 2000);
+    }, 6000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -33,7 +35,7 @@ const Wall = () => {
       >
         <mesh>
           <sphereGeometry args={[3, 32, 32]} />
-          <meshStandardMaterial color="#333" metalness={0.8} />
+          <meshBasicMaterial map = {matcap} metalness={0.8} />
         </mesh>
       </RigidBody>
 
@@ -59,7 +61,7 @@ const Wall = () => {
                 <boxGeometry args={[size, size, size]} />
                 <meshBasicMaterial 
                   map={wallTexture}
-                  color="#D8C9A7" 
+                  color="#FF6C0C" 
                 />
               </mesh>
             </RigidBody>
