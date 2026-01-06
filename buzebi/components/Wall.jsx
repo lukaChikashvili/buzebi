@@ -20,7 +20,7 @@ const Wall = () => {
         
         ballRef.current.setLinvel({ x: -50, y: 0, z: 0 }, true);
       }
-    }, 6000);
+    }, 10000);
     return () => clearTimeout(timer);
   }, []);
 

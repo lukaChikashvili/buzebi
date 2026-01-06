@@ -4,6 +4,7 @@ import { Canvas } from "@react-three/fiber";
 import Experience from "../components/Experience";
 import { OrbitControls } from "@react-three/drei";
 import { Physics } from "@react-three/rapier";
+import Lights from "../components/Lights";
 
 
 export default function Home() {
@@ -22,6 +23,7 @@ export default function Home() {
         <Physics>
        <Experience />
        </Physics>
+       <Lights />
       </Canvas>
     </>
   );

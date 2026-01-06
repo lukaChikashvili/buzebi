@@ -1,14 +1,28 @@
 import { grassVertex } from "../shaders/vertex"
 import { grassFragment } from "../shaders/fragment"
 import * as THREE from 'three'
-import { useRef } from "react"
+import { useMemo, useRef } from "react"
 import { useFrame } from "@react-three/fiber"
-import { Sky, Stars } from "@react-three/drei"
+import { Sky, Stars, useGLTF } from "@react-three/drei"
 import BlueMountains from "./BlueMountains"
 import Wall from "./Wall"
 import { RigidBody } from "@react-three/rapier"
 
 const Experience = () => {
+
+  const houses = useMemo(() => [
+    { position: [-150, 0, -120], scale: 0.8 },
+    { position: [-120, 0, -140], scale: 0.85 },
+    { position: [-70, 0, -130], scale: 0.75 },
+    { position: [-20, 0, -110], scale: 0.9 },
+    { position: [90, 0, -120], scale: 0.8 },
+    { position: [120, 0, -170], scale: 0.85 },
+    { position: [0, 0, -130], scale: 0.75 },
+    { position: [130, 0, -110], scale: 0.9 },
+  ], []);
+
+
+
 
 const uniforms = useRef({
   uTime: { value: 0 },
@@ -22,6 +36,9 @@ useFrame((state) => {
  
 
 });
+
+const house = useGLTF('./house.glb');
+
 
 
 
@@ -55,6 +72,21 @@ useFrame((state) => {
     </RigidBody>
     <BlueMountains />
     <Wall />
+
+    {houses.map((item, i) => {
+        const clonedHouse = house.scene.clone(true);
+
+        return(
+            <group
+            key={i}
+            position={item.position}
+           
+          >
+            <primitive object={clonedHouse} scale={5} />
+           
+          </group>
+        )
+       })}
    </>
   )
 }

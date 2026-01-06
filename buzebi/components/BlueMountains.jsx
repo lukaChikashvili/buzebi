@@ -5,6 +5,7 @@ import * as THREE from 'three'
 import { posterVertex } from '../shaders/poster/vertex'
 import { posterFragment } from '../shaders/poster/fragment'
 import { useFrame } from '@react-three/fiber'
+import { RigidBody } from '@react-three/rapier'
 
 const BlueMountains = () => {
     const [matcapTexture] = useMatcapTexture('1A2461_3D70DB_2C3C8F_2C6CAC', 256);
@@ -30,6 +31,22 @@ const BlueMountains = () => {
   return (
     <>
     
+    <Text3D
+        font="/fonts/helvetiker_regular.typeface.json"
+        size={1.75}
+        height={0.2}
+        curveSegments={12}
+        bevelEnabled
+        bevelThickness={0.8}
+        bevelSize={0.02}
+        bevelOffset={0}
+        bevelSegments={5}
+        position={[-12, 9, 15]}
+        rotation={[0, 0.7, 0]}
+      >
+        {`Blue\nMountains`}
+        <meshMatcapMaterial matcap={matcapTexture} />
+      </Text3D>
       
 
         <mesh
