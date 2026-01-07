@@ -5,7 +5,7 @@ import * as THREE from 'three'
 import { posterVertex } from '../shaders/poster/vertex'
 import { posterFragment } from '../shaders/poster/fragment'
 import { useFrame } from '@react-three/fiber'
-import { RigidBody } from '@react-three/rapier'
+import gsap from 'gsap'
 
 const BlueMountains = () => {
     const [matcapTexture] = useMatcapTexture('1A2461_3D70DB_2C3C8F_2C6CAC', 256);
@@ -13,6 +13,7 @@ const BlueMountains = () => {
     const texture = useTexture('./blue.jpg');
   let shaderRef = useRef();
   let bookRef = useRef();
+  const textRef = useRef()
 
   // text
   const [text, setText] = useState(false);
@@ -38,11 +39,31 @@ const BlueMountains = () => {
       // text appear
       const appearText = () => {
          setText(true);
+
+         requestAnimationFrame(() => {
+          gsap.fromTo(
+            textRef.current,
+            { opacity: 0, y: 30, scale: 0.8 },
+            { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: 'power3.out' }
+          )
+        })
       }
 
       const hideText = () => {
-       setText(false);
+      
+        setText(false);
+        
+        gsap.to(textRef.current, {
+          opacity: 0,
+          y: 30,
+          scale: 0.8,
+          duration: 0.4,
+          ease: 'power2.in',
+          
+        })
       }
+
+      
 
 
     
@@ -81,7 +102,7 @@ const BlueMountains = () => {
       <primitive onPointerOver = {appearText} onPointerOut = {hideText}  ref = {bookRef} object={book.scene} scale = {3.5} rotation = {[0, 0.7, 0]} position = {[3, 8, 10]} />
 
       {text && <Html className='text'>
-           <h1 className='-mt-48  -ml-4 w-48 text-center border-2  border-white bg-purple-300 rounded-md shadow-lg px-2 py-2'>
+           <h1  style={{ opacity: 0, transform: 'translateY(30px) scale(0.8)' }} ref = {textRef} className='-mt-48  -ml-4 w-48 text-center border-2  border-white bg-purple-300 rounded-md shadow-lg px-2 py-2'>
               ფილმის შესახებ
            </h1>
         </Html>}
