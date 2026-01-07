@@ -19,8 +19,8 @@ uniform float uSeason;
      } else if (uSeason < 2.5) {
       //summer
       
-      vec3 low = vec3(0.1, 0.4, 0.1);
-      vec3 high = vec3(0.8, 0.7, 0.3);
+      vec3 low = vec3(0.33, 0.48, 0.24);   
+      vec3 high = vec3(0.74, 0.66, 0.36);  
       float blend = smoothstep(0.0, 2.5, vElevation);
       color = mix(low, high, blend);
     } else if (uSeason < 2.5) {
@@ -38,7 +38,12 @@ uniform float uSeason;
       color = mix(low, high, blend);
     }
 
+    float shadow = smoothstep(-0.2, 0.4, vElevation);
+    color *= mix(0.85, 1.1, shadow);
+
   gl_FragColor = vec4(color, 1.0);
+
+
 
    }
 `;

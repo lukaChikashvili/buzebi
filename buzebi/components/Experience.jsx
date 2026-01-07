@@ -1,8 +1,8 @@
 import { grassVertex } from "../shaders/vertex"
 import { grassFragment } from "../shaders/fragment"
 import * as THREE from 'three'
-import { useMemo, useRef } from "react"
-import { useFrame } from "@react-three/fiber"
+import { useEffect, useMemo, useRef } from "react"
+import { useFrame, useThree } from "@react-three/fiber"
 import { Sky, Stars, useGLTF } from "@react-three/drei"
 import BlueMountains from "./BlueMountains"
 import Wall from "./Wall"
@@ -39,7 +39,11 @@ useFrame((state) => {
 
 const house = useGLTF('./house.glb');
 
+const { camera } = useThree();
 
+useEffect(() => {
+  console.log(camera.position)
+}, [camera.position])
 
 
   return (

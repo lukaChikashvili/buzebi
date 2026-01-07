@@ -1,7 +1,7 @@
 import { useMatcapTexture, useTexture } from '@react-three/drei';
 import { RigidBody } from '@react-three/rapier'
 import React, { useEffect, useRef } from 'react'
-import * as THREE from 'three'
+
 
 const Wall = () => {
   const ballRef = useRef(null);
@@ -61,7 +61,7 @@ const Wall = () => {
                 <boxGeometry args={[size, size, size]} />
                 <meshBasicMaterial 
                   map={wallTexture}
-                  color="#FF6C0C" 
+                  color = "#EA7B7B" 
                 />
               </mesh>
             </RigidBody>

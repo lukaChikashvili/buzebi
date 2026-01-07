@@ -1,6 +1,6 @@
 "use client"
-import { Text3D, useGLTF, useMatcapTexture, useTexture } from '@react-three/drei'
-import React, { useRef } from 'react'
+import { Html, Text3D, useGLTF, useMatcapTexture, useTexture } from '@react-three/drei'
+import React, { useRef, useState } from 'react'
 import * as THREE from 'three'
 import { posterVertex } from '../shaders/poster/vertex'
 import { posterFragment } from '../shaders/poster/fragment'
@@ -12,6 +12,11 @@ const BlueMountains = () => {
 
     const texture = useTexture('./blue.jpg');
   let shaderRef = useRef();
+  let bookRef = useRef();
+
+  // text
+  const [text, setText] = useState(false);
+
 
     const uniforms = useRef({
         uTime: { value: 0 },
@@ -29,6 +34,15 @@ const BlueMountains = () => {
 
       const deskModel = useGLTF('./desk.glb');
       const book = useGLTF('./book.glb');
+
+      // text appear
+      const appearText = () => {
+         setText(true);
+      }
+
+      const hideText = () => {
+       setText(false);
+      }
 
 
     
@@ -49,8 +63,8 @@ const BlueMountains = () => {
         position={[-12, 9, 15]}
         rotation={[0, 0.7, 0]}
       >
-        {`Blue\nMountains`}
-        <meshMatcapMaterial matcap={matcapTexture} />
+        {``}
+        <meshMatcapMaterial color = "4E78A0" matcap={matcapTexture} />
       </Text3D>
       
 
@@ -64,7 +78,11 @@ const BlueMountains = () => {
       </mesh>
 
      <primitive object={deskModel.scene} rotation = {[0, -0.5, 0]} position = {[6, 6, 12]}  scale = {0.08} />
-      <primitive object={book.scene} scale = {3.5} rotation = {[0, 0.7, 0]} position = {[3, 8, 10]} />
+      <primitive onPointerOver = {appearText} onPointerOut = {hideText}  ref = {bookRef} object={book.scene} scale = {3.5} rotation = {[0, 0.7, 0]} position = {[3, 8, 10]} />
+
+      {text && <Html>
+           <h1 className='-mt-44 ml-16 bg-red-500'>text</h1>
+        </Html>}
     </>
   )
 }
