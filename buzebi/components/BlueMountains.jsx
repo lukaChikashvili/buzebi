@@ -1,11 +1,12 @@
 "use client"
 import { Html, Text3D, useGLTF, useMatcapTexture, useTexture } from '@react-three/drei'
-import React, { useRef, useState } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import * as THREE from 'three'
 import { posterVertex } from '../shaders/poster/vertex'
 import { posterFragment } from '../shaders/poster/fragment'
 import { useFrame, useThree } from '@react-three/fiber'
 import gsap from 'gsap'
+import { UserContext } from '../context/userContext'
 
 const BlueMountains = () => {
     const [matcapTexture] = useMatcapTexture('1A2461_3D70DB_2C3C8F_2C6CAC', 256);
@@ -17,6 +18,7 @@ const BlueMountains = () => {
 
   // text
   const [text, setText] = useState(false);
+ const { info, setInfo } = useContext(UserContext);
 
 
     const uniforms = useRef({
@@ -75,7 +77,10 @@ const showInfo = () => {
     duration: 1,
     delay: 1,
     ease: "circ.inOut"
-  })
+  });
+
+  setInfo(true);
+
 }
 
     
@@ -118,6 +123,8 @@ const showInfo = () => {
               ფილმის შესახებ
            </h1>
         </Html>}
+
+
     </>
   )
 }
