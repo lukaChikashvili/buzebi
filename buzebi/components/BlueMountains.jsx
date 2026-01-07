@@ -80,8 +80,10 @@ const BlueMountains = () => {
      <primitive object={deskModel.scene} rotation = {[0, -0.5, 0]} position = {[6, 6, 12]}  scale = {0.08} />
       <primitive onPointerOver = {appearText} onPointerOut = {hideText}  ref = {bookRef} object={book.scene} scale = {3.5} rotation = {[0, 0.7, 0]} position = {[3, 8, 10]} />
 
-      {text && <Html>
-           <h1 className='-mt-44 ml-16 bg-red-500'>text</h1>
+      {text && <Html className='text'>
+           <h1 className='-mt-48  -ml-4 w-48 text-center border-2  border-white bg-purple-300 rounded-md shadow-lg px-2 py-2'>
+              ფილმის შესახებ
+           </h1>
         </Html>}
     </>
   )

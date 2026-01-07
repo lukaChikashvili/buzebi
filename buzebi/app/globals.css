@@ -1,2 +1,11 @@
+@import url("//cdn.web-fonts.ge/fonts/arial-geo-italic/css/arial-geo-italic.min.css");
 @import "tailwindcss";
 
+html, body {
+    font-family: "Arial GEO Italic", sans-serif;
+
+}
+
+.text {
+    font-family: "Arial GEO Italic", sans-serif;
+}
