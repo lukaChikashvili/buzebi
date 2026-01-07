@@ -24,6 +24,7 @@ export default function Home() {
         gl={{ physicallyCorrectLights: true }}>
         
         <Physics>
+  
        <Experience />
        </Physics>
        <Lights />

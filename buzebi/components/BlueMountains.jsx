@@ -4,7 +4,7 @@ import React, { useRef, useState } from 'react'
 import * as THREE from 'three'
 import { posterVertex } from '../shaders/poster/vertex'
 import { posterFragment } from '../shaders/poster/fragment'
-import { useFrame } from '@react-three/fiber'
+import { useFrame, useThree } from '@react-three/fiber'
 import gsap from 'gsap'
 
 const BlueMountains = () => {
@@ -52,7 +52,7 @@ const BlueMountains = () => {
       const hideText = () => {
       
         setText(false);
-        
+
         gsap.to(textRef.current, {
           opacity: 0,
           y: 30,
@@ -63,8 +63,20 @@ const BlueMountains = () => {
         })
       }
 
-      
+      const { camera} = useThree();
 
+      
+// show info
+const showInfo = () => {
+  gsap.to(camera.position, {
+    x: 1,
+    y:9,
+    z: 12,
+    duration: 1,
+    delay: 1,
+    ease: "circ.inOut"
+  })
+}
 
     
 
@@ -90,7 +102,7 @@ const BlueMountains = () => {
       
 
         <mesh
-        position={[8, 10, 5]}  
+        position={[8, 10, 2]}  
         rotation={[0, -0.5, 0]}    
       >
         <planeGeometry args={[18, 10, 50,50]} /> 
@@ -99,7 +111,7 @@ const BlueMountains = () => {
       </mesh>
 
      <primitive object={deskModel.scene} rotation = {[0, -0.5, 0]} position = {[6, 6, 12]}  scale = {0.08} />
-      <primitive onPointerOver = {appearText} onPointerOut = {hideText}  ref = {bookRef} object={book.scene} scale = {3.5} rotation = {[0, 0.7, 0]} position = {[3, 8, 10]} />
+      <primitive onClick = {showInfo} onPointerOver = {appearText} onPointerOut = {hideText}  ref = {bookRef} object={book.scene} scale = {3.5} rotation = {[0, 0.7, 0]} position = {[3, 8, 10]} />
 
       {text && <Html className='text'>
            <h1  style={{ opacity: 0, transform: 'translateY(30px) scale(0.8)' }} ref = {textRef} className='-mt-48  -ml-4 w-48 text-center border-2  border-white bg-purple-300 rounded-md shadow-lg px-2 py-2'>
