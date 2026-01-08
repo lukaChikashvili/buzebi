@@ -19,7 +19,8 @@ const Lights = () => {
 <hemisphereLight
         skyColor={"#C9D8FF"}
         groundColor={"#6E7A3C"}
-        intensity={0.45}
+        color = {"orange"}
+        intensity={2}
         
       />
 

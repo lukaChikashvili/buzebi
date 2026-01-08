@@ -64,7 +64,7 @@ useEffect(() => {
 
  <Stars radius={100} depth={50} count={1300} factor={4} saturation={0} fade  />
 <RigidBody type="fixed">
-    <mesh rotation={[-Math.PI / 2, 0, 0]}>
+    <mesh rotation={[-Math.PI / 2, 0, 0]} position = {[0, -3, 0]}>
       <planeGeometry args={[400, 200, 400, 400]} />
       <shaderMaterial
         vertexShader={grassVertex}

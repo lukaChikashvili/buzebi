@@ -19,8 +19,8 @@ uniform float uSeason;
      } else if (uSeason < 2.5) {
       //summer
       
-      vec3 low = vec3(0.33, 0.48, 0.24);   
-      vec3 high = vec3(0.74, 0.66, 0.36);  
+      vec3 low  = vec3(0.12, 0.18, 0.08);
+      vec3 high = vec3(0.45, 0.55, 0.22);
       float blend = smoothstep(0.0, 2.5, vElevation);
       color = mix(low, high, blend);
     } else if (uSeason < 2.5) {

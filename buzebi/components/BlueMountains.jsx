@@ -110,7 +110,7 @@ const showInfo = () => {
         position={[8, 10, 2]}  
         rotation={[0, -0.5, 0]}    
       >
-        <planeGeometry args={[18, 10, 50,50]} /> 
+        <planeGeometry args={[25, 10, 50,50]} /> 
         <shaderMaterial   ref={shaderRef}
         uniforms={uniforms.current} vertexShader={posterVertex} fragmentShader={posterFragment}  />
       </mesh>

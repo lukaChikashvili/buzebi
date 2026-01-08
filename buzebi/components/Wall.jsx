@@ -61,7 +61,7 @@ const Wall = () => {
                 <boxGeometry args={[size, size, size]} />
                 <meshBasicMaterial 
                   map={wallTexture}
-                  color = "#EA7B7B" 
+                  color = "#F5F2F2" 
                 />
               </mesh>
             </RigidBody>
