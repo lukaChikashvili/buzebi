@@ -9,6 +9,7 @@ import Wall from "./Wall"
 import { RigidBody } from "@react-three/rapier"
 import gsap from 'gsap'
 import { UserContext } from "../context/userContext"
+import Menu from "./Menu"
 
 const Experience = () => {
   
@@ -44,7 +45,7 @@ useFrame((state) => {
 const house = useGLTF('./house.glb');
 
 const { camera } = useThree();
-const { info } = useContext(UserContext);
+const { info, showMenu } = useContext(UserContext);
 
 useEffect(() => {
   if(info === false) {
@@ -109,6 +110,8 @@ useEffect(() => {
           </group>
         )
        })}
+
+  
    </>
   )
 }

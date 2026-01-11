@@ -10,11 +10,12 @@ import { UserContext } from "../context/userContext";
 import Info from "../components/Info";
 import mount from '../assets/mountImage.jpg'
 import gsap from "gsap";
+import Menu from "../components/Menu";
 
 
 export default function Home() {
 
-const { info } = useContext(UserContext);
+const { info, showMenu, setShowMenu } = useContext(UserContext);
 
 
 
@@ -24,7 +25,10 @@ const { info } = useContext(UserContext);
 
   return (
     <>
-     <div className="relative w-screen h-screen overflow-hidden">
+     <div className="fixed inset-0 overflow-hidden">
+       <div className="absolute top-0 left-0 z-10">
+        <p onClick={() => setShowMenu(true)} >Menu</p> 
+       </div>
 
      {info && (
     <div className="absolute inset-0 z-50 pointer-events-auto">
@@ -42,10 +46,13 @@ const { info } = useContext(UserContext);
 12.12, 
 24.025], fov: 70, near: 0.1, far: 10000 }}
         shadows
-        gl={{ physicallyCorrectLights: true }}>
+        gl={{ physicallyCorrectLights: true, preserveDrawingBuffer: true }} onCreated={({ gl }) => {
+          gl.setClearColor('#000000', 1)
+        }}>
         
         <Physics>
-  <OrbitControls />
+       <Menu isOpen={showMenu} />
+
        <Experience />
        </Physics>
        <Lights />
