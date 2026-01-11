@@ -45,7 +45,7 @@ const { info } = useContext(UserContext);
         gl={{ physicallyCorrectLights: true }}>
         
         <Physics>
-  
+  <OrbitControls />
        <Experience />
        </Physics>
        <Lights />

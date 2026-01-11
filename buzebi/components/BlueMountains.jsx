@@ -18,7 +18,9 @@ const BlueMountains = () => {
 
   // text
   const [text, setText] = useState(false);
- const { info, setInfo } = useContext(UserContext);
+ const {setInfo } = useContext(UserContext);
+
+
 
 
     const uniforms = useRef({
@@ -83,6 +85,9 @@ const showInfo = () => {
 
 }
 
+// old tv model
+const tv = useGLTF('./tv.glb');
+
     
 
   return (
@@ -117,6 +122,9 @@ const showInfo = () => {
 
      <primitive object={deskModel.scene} rotation = {[0, -0.5, 0]} position = {[6, 6, 12]}  scale = {0.08} />
       <primitive onClick = {showInfo} onPointerOver = {appearText} onPointerOut = {hideText}  ref = {bookRef} object={book.scene} scale = {3.5} rotation = {[0, 0.7, 0]} position = {[3, 8, 10]} />
+
+     <primitive object={tv.scene} scale = {0.06} rotation = {[0, 0.8, 0]} position = {[6.5, 7.5, 12]} />
+
 
       {text && <Html className='text'>
            <h1  style={{ opacity: 0, transform: 'translateY(30px) scale(0.8)' }} ref = {textRef} className='-mt-48  -ml-4 w-48 text-center border-2  border-white bg-purple-300 rounded-md shadow-lg px-2 py-2'>
