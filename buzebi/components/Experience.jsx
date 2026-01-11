@@ -1,14 +1,17 @@
 import { grassVertex } from "../shaders/vertex"
 import { grassFragment } from "../shaders/fragment"
 import * as THREE from 'three'
-import { useEffect, useMemo, useRef } from "react"
+import { useContext, useEffect, useMemo, useRef } from "react"
 import { useFrame, useThree } from "@react-three/fiber"
 import { Sky, Stars, useGLTF } from "@react-three/drei"
 import BlueMountains from "./BlueMountains"
 import Wall from "./Wall"
 import { RigidBody } from "@react-three/rapier"
+import gsap from 'gsap'
+import { UserContext } from "../context/userContext"
 
 const Experience = () => {
+  
 
   const houses = useMemo(() => [
     { position: [-150, 0, -120], scale: 0.8 },
@@ -21,6 +24,7 @@ const Experience = () => {
     { position: [130, 0, -110], scale: 0.9 },
   ], []);
 
+  
 
 
 
@@ -40,6 +44,20 @@ useFrame((state) => {
 const house = useGLTF('./house.glb');
 
 const { camera } = useThree();
+const { info } = useContext(UserContext);
+
+useEffect(() => {
+  if(info === false) {
+   gsap.to(camera.position, {
+     x: 2.74,
+     y: 12.12,
+     z: 24.025,
+     duration: 1.2,
+     ease: "power3.inOut"
+   })
+  }
+}, [info]);
+
 
 useEffect(() => {
   console.log(camera.position)

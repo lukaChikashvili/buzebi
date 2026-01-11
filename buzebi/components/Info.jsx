@@ -1,8 +1,13 @@
 
-import React, { useEffect, useLayoutEffect, useRef } from 'react'
+import React, { useContext, useEffect, useLayoutEffect, useRef } from 'react'
 import gsap from 'gsap'
+import { UserContext } from '../context/userContext'
+import { useThree } from '@react-three/fiber';
 
-const Info = ({ title, desc, image, onClose }) => {
+const Info = ({ title, desc,  }) => {
+
+  const { setInfo } = useContext(UserContext);
+
 
   const container = useRef()
   const overlay = useRef()
@@ -10,12 +15,17 @@ const Info = ({ title, desc, image, onClose }) => {
   const lineRef = useRef()
   const descRef = useRef()
 
+  const tl = useRef()
+
+
+
+
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
   
-      const tl = gsap.timeline()
+      tl.current = gsap.timeline()
   
-      tl.fromTo(overlay.current,
+      tl.current.fromTo(overlay.current,
         { opacity: 0 },
         { opacity: 0.6, duration: 0.6, ease: "power2.out" }
       )
@@ -38,10 +48,24 @@ const Info = ({ title, desc, image, onClose }) => {
         ease: "power3.out"
       }, "-=0.2")
   
-    });
+    })
   
-    return () => ctx.revert();
+    return () => ctx.revert()
   }, []);
+
+  const handleClose = () => {
+    tl.current.reverse()
+  
+    tl.current.eventCallback("onReverseComplete", () => {
+      setInfo(false)
+    });
+
+    
+
+  }
+  
+
+
 
   
   
@@ -52,8 +76,8 @@ const Info = ({ title, desc, image, onClose }) => {
       <div ref={overlay} className="absolute inset-0 bg-black"></div>
 
       <div
-        className="text-white text-xl absolute z-10 cursor-pointer right-12 top-6"
-        onClick={onClose}
+        className="text-white text-xl absolute z-20 cursor-pointer right-12 top-6"
+        onClick={handleClose}
       >
         ✕
       </div>

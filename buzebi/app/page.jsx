@@ -5,16 +5,20 @@ import Experience from "../components/Experience";
 import { OrbitControls } from "@react-three/drei";
 import { Physics } from "@react-three/rapier";
 import Lights from "../components/Lights";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { UserContext } from "../context/userContext";
 import Info from "../components/Info";
 import mount from '../assets/mountImage.jpg'
-
+import gsap from "gsap";
 
 
 export default function Home() {
 
 const { info } = useContext(UserContext);
+
+
+
+
 
   
 
