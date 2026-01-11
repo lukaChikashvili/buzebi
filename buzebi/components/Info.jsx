@@ -1,22 +1,78 @@
-import React from 'react'
 
-const Info = ({title, desc, image}) => {
+import React, { useEffect, useLayoutEffect, useRef } from 'react'
+import gsap from 'gsap'
+
+const Info = ({ title, desc, image, onClose }) => {
+
+  const container = useRef()
+  const overlay = useRef()
+  const titleRef = useRef()
+  const lineRef = useRef()
+  const descRef = useRef()
+
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+  
+      const tl = gsap.timeline()
+  
+      tl.fromTo(overlay.current,
+        { opacity: 0 },
+        { opacity: 0.6, duration: 0.6, ease: "power2.out" }
+      )
+      .from(titleRef.current, {
+        y: 40,
+        opacity: 0,
+        duration: 0.7,
+        ease: "power3.out"
+      }, "-=0.2")
+      .from(lineRef.current, {
+        scaleX: 0,
+        transformOrigin: "left",
+        duration: 0.8,
+        ease: "power2.out"
+      }, "-=0.3")
+      .from(descRef.current, {
+        y: 20,
+        opacity: 0,
+        duration: 0.9,
+        ease: "power3.out"
+      }, "-=0.2")
+  
+    });
+  
+    return () => ctx.revert();
+  }, []);
+
+  
+  
+
   return (
-    <div className="fixed inset-0 z-50">
+    <div ref={container} className="fixed inset-0 z-50">
 
-   
-    <div className="absolute inset-0 bg-black opacity-60"></div>
+      <div ref={overlay} className="absolute inset-0 bg-black"></div>
 
-       <div className='text-white text-xl absolute z-10 cursor-pointer right-12 top-6' >X</div>
-    <div className="relative z-10 px-24 py-12 h-full flex flex-col gap-8">
-      <h1 className="text-white text-4xl font-bold">{title}</h1>
-      <div className='w-full h-0.5 bg-white'></div>
-      <p className='w-1/2 text-white text-xl'>{desc}</p>
-      
+      <div
+        className="text-white text-xl absolute z-10 cursor-pointer right-12 top-6"
+        onClick={onClose}
+      >
+        ✕
+      </div>
+
+      <div className="relative z-10 px-24 py-12 h-full flex flex-col gap-8">
+        <h1 ref={titleRef} className="text-white text-4xl font-bold">
+          {title}
+        </h1>
+
+        <div ref={lineRef} className="w-full h-0.5 bg-white"></div>
+
+        <p ref={descRef} className="w-1/2 text-white text-xl">
+          {desc}
+        </p>
+      </div>
+
     </div>
-
-  </div>
   )
 }
 
 export default Info
+

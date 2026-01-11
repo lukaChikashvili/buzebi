@@ -3,9 +3,12 @@ import { RigidBody } from '@react-three/rapier'
 import React, { useEffect, useRef } from 'react'
 
 
+
+
 const Wall = () => {
   const ballRef = useRef(null);
   const wallTexture = useTexture('./block.jpg');
+;
 
   const [matcap] = useMatcapTexture('E6BF3C_5A4719_977726_FCFC82', 256);
 
@@ -19,6 +22,7 @@ const Wall = () => {
       if (ballRef.current) {
         
         ballRef.current.setLinvel({ x: -50, y: 0, z: 0 }, true);
+      
       }
     }, 10000);
     return () => clearTimeout(timer);
