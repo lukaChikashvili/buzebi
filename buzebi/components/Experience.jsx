@@ -31,7 +31,7 @@ const Experience = () => {
 
 const uniforms = useRef({
   uTime: { value: 0 },
-  uSeason: { value: 2.0 }
+  uSeason: { value: 1.0 }
 });
 
 useFrame((state) => {

@@ -24,7 +24,7 @@ const Lights = () => {
         
       />
 
-<ambientLight intensity={2} color = "orange" />
+<ambientLight intensity={2} color = "#FBEF76" />
    </>
   )
 }

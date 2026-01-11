@@ -8,7 +8,7 @@ import Lights from "../components/Lights";
 import { useContext, useEffect } from "react";
 import { UserContext } from "../context/userContext";
 import Info from "../components/Info";
-import mount from '../assets/mountImage.jpg'
+import mount from '../public/mountImage.jpg'
 import gsap from "gsap";
 import Menu from "../components/Menu";
 

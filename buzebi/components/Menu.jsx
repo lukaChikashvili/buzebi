@@ -1,85 +1,115 @@
 'use client'
-import { useGLTF } from '@react-three/drei'
-import { useContext, useEffect, useMemo, useRef } from 'react'
-import gsap from 'gsap'
-import { UserContext } from '../context/userContext';
-import { useThree } from '@react-three/fiber';
+import { forwardRef, useContext, useEffect, useRef, useState } from "react";
+import { useGLTF, useTexture } from "@react-three/drei";
+import { useThree } from "@react-three/fiber";
+import gsap from "gsap";
+import { posters } from "./Posters";
+import { UserContext } from "../context/userContext";
+
+const MenuChainGroup = forwardRef(({ position, posterTexture }, ref) => {
+  const chain = useGLTF("./chain.glb");
+  
+
+  return (
+    <group ref={ref} position={position}>
+      <primitive object={chain.scene.clone()} scale={0.4} position={[-4, 4, -0.6]} />
+      <primitive object={chain.scene.clone()} scale={0.4} position={[4, 4, -2]} />
+      <mesh position={[0, 5, 0]} rotation={[-1.7, 0, 0.26]}>
+        <boxGeometry args={[15, 0.5, 6]} />
+        <meshStandardMaterial map={posterTexture} />
+      </mesh>
+    </group>
+  );
+});
 
 const Menu = ({ isOpen }) => {
   const group = useRef();
-  const chain = useGLTF('./chain.glb');
-
-  const { showMenu } = useContext(UserContext);
   const { camera } = useThree();
+  const chainRefs = useRef([]);
+  const { showMenu } = useContext(UserContext);
 
 
-  const chains = useMemo(() => {
-    return [chain.scene.clone(), chain.scene.clone()]
-  }, [chain]);
+  const posterTextures = posters.map(p => useTexture(p.img));
+
+  const arrowModel = useGLTF('./arrow.glb');
 
   useEffect(() => {
     if (!group.current) return;
 
     if (isOpen) {
       group.current.visible = true;
-
-      gsap.to(group.current.position, {
-        y: 0,
-        duration: 1,
-        ease: "power3.out"
-      });
-
-      gsap.to(group.current.rotation, {
-        x: 0,
-        duration: 1,
-        ease: "power3.out"
-      });
-
+      gsap.to(group.current.position, { y: 1, duration: 1, ease: "power3.out" });
+      gsap.to(group.current.rotation, { x: 0, duration: 1, ease: "power3.out" });
     } else {
-      gsap.to(group.current.position, {
-        y: -8,
-        duration: 0.8,
-        ease: "power3.in"
-      });
-
-      gsap.to(group.current.rotation, {
-        x: -0.5,
-        duration: 0.8,
-        ease: "power3.in"
-      });
-
+      gsap.to(group.current.position, { y: -5, duration: 0.8, ease: "power3.in" });
+      gsap.to(group.current.rotation, { x: -0.5, duration: 0.8, ease: "power3.in" });
       gsap.delayedCall(0.8, () => {
-        group.current.visible = false
+        group.current.visible = false;
       });
     }
 
-    if(showMenu) {
-        gsap.to(camera.position, {
-            x: 3, 
-            y: 10, 
-
-            z: 40,
-            duration: 1,
-            ease: 'circ.inOut',
-            delay: 0.5
-        })
+    if (showMenu) {
+      gsap.to(camera.position, 
+        { x: 0, y: 9, z: 40, duration: 1, ease: "circ.inOut", delay: 0.5 });
     }
   }, [isOpen]);
 
+  const moveChains = (xOffset) => {
+    chainRefs.current.forEach(ref => {
+      if (ref) {
+        gsap.to(ref.position, { x: ref.position.x + xOffset, duration: 1, ease: "power2.inOut" });
+      }
+    });
+  };
+
+  const handleNext = () => moveChains(15);
+  const handlePrev = () => moveChains(-15);
 
   return (
-    <group ref={group} position={[0, -8, 4]} rotation={[-0.5, 0, 0]} visible={false}>
+    <group ref={group} position={[10, 2, 30]} rotation={[-0.5, 0, 0]} visible={false}>
 
-    <primitive scale = {0.7} object={chains[0]} position={[-1, 7, 0]} />
- 
-    <primitive scale = {0.7} object={chains[1]} position={[5, 7, 0]} />
-   
-    <mesh position={[0, 10, 0]} rotation = {[-Math.PI / 2, 0, 0]}>
-      <boxGeometry args={[10, 0.2, 2]} />
-      <meshStandardMaterial color="orange" />
-    </mesh>
+      {posterTextures.map((texture, i) => (
+        <MenuChainGroup
+          key={i}
+          ref={el => (chainRefs.current[i] = el)}
+          position={[i * 17 - ((posterTextures.length - 1) * 15) / 2, 0, 0]} 
+          posterTexture={texture}
+        />
+      ))}
+
+     
+<group position={[-10, -2, 3]}>
+
+  <group
+    position={[2, 5, 3]}
+    rotation={[0,0, 0]}
+    scale={0.5}
+    onClick={handlePrev}       
+    onPointerOver={(e) => e.stopPropagation()} 
+  >
+    {arrowModel.scene.clone().children.map((child, i) => (
+      <primitive key={i} object={child} />
+    ))}
   </group>
-  )
-}
 
-export default Menu
+  <group
+    position={[-2, 5, 3]}
+    rotation={[0,  Math.PI, 0]} 
+    scale={0.5}
+    onClick={handleNext}   
+    onPointerOver={(e) => e.stopPropagation()}
+  >
+    {arrowModel.scene.clone().children.map((child, i) => (
+      <primitive key={i} object={child} />
+    ))}
+  </group>
+</group>
+
+
+
+
+    </group>
+  );
+};
+
+export default Menu;
