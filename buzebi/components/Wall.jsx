@@ -15,13 +15,13 @@ const Wall = () => {
  
   const rotationY = -Math.PI / 4; 
   const size = 2;
-  const spacing = 2.2;
+  const spacing = 2;
 
   useEffect(() => {
     const timer = setTimeout(() => {
       if (ballRef.current) {
         
-        ballRef.current.setLinvel({ x: -50, y: 0, z: 0 }, true);
+        ballRef.current.setLinvel({ x: -70, y: 0, z: 0 }, true);
       
       }
     }, 10000);
@@ -33,7 +33,7 @@ const Wall = () => {
 
       <RigidBody 
         ref={ballRef} 
-        position={[40, 20, 0]} 
+        position={[50, 20, 0]} 
         colliders="ball" 
         mass={150} 
       >
@@ -65,7 +65,7 @@ const Wall = () => {
                 <boxGeometry args={[size, size, size]} />
                 <meshBasicMaterial 
                   map={wallTexture}
-                  color = "#F5F2F2" 
+                  color = "#EDDCC6" 
                 />
               </mesh>
             </RigidBody>

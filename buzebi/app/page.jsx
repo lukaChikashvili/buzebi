@@ -43,7 +43,7 @@ const { info, showMenu, setShowMenu } = useContext(UserContext);
 
       <Canvas  camera={{ position: [
 2.74, 
-12.12, 
+8.12, 
 24.025], fov: 70, near: 0.1, far: 10000 }}
         shadows
         gl={{ physicallyCorrectLights: true, preserveDrawingBuffer: true }} onCreated={({ gl }) => {
@@ -52,7 +52,7 @@ const { info, showMenu, setShowMenu } = useContext(UserContext);
         
         <Physics>
        <Menu isOpen={showMenu} />
-
+       
        <Experience />
        </Physics>
        <Lights />

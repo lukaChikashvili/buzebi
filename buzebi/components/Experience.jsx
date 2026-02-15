@@ -51,7 +51,7 @@ useEffect(() => {
   if(info === false) {
    gsap.to(camera.position, {
      x: 2.74,
-     y: 12.12,
+     y: 10.12,
      z: 24.025,
      duration: 1.2,
      ease: "power3.inOut"
@@ -71,7 +71,7 @@ useEffect(() => {
    
    <Sky 
   distance={450000} 
-  sunPosition={[-40, -0.1, -60]}                
+  sunPosition={[1, 0, 2]}                
   turbidity={10}                  
   rayleigh={10}                   
   mieCoefficient={0.01}          
@@ -82,6 +82,7 @@ useEffect(() => {
 />
 
  <Stars radius={100} depth={50} count={13000} factor={4} saturation={0} fade  />
+ 
 <RigidBody type="fixed">
     <mesh rotation={[-Math.PI / 2, 0, 0]} position = {[0, -3, 0]}>
       <planeGeometry args={[400, 200, 400, 400]} />
