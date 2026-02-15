@@ -3,7 +3,7 @@ import { grassFragment } from "../shaders/fragment"
 import * as THREE from 'three'
 import { useContext, useEffect, useMemo, useRef } from "react"
 import { useFrame, useThree } from "@react-three/fiber"
-import { Sky, Stars, useGLTF } from "@react-three/drei"
+import { Environment, Sky, Stars, useGLTF } from "@react-three/drei"
 import BlueMountains from "./BlueMountains"
 import Wall from "./Wall"
 import { RigidBody } from "@react-three/rapier"
@@ -67,21 +67,21 @@ useEffect(() => {
 
   return (
    <>
+   <Environment preset="sunset" />
    
-   <Sky
-      distance={450000}        
-      sunPosition={[0, 5, 0]} 
-      inclination={0}          
-      azimuth={0.25}           
-      turbidity={2}            
-      rayleigh={0.1}           
-      mieCoefficient={0.005}   
-      mieDirectionalG={0.8}    
-      elevation={-10}          
-    
-    />
+   <Sky 
+  distance={450000} 
+  sunPosition={[-40, -0.1, -60]}                
+  turbidity={10}                  
+  rayleigh={10}                   
+  mieCoefficient={0.01}          
+  mieDirectionalG={0.10}         
+  elevation={0}                
+  azimuth={0.25} 
+  
+/>
 
- <Stars radius={100} depth={50} count={1300} factor={4} saturation={0} fade  />
+ <Stars radius={100} depth={50} count={13000} factor={4} saturation={0} fade  />
 <RigidBody type="fixed">
     <mesh rotation={[-Math.PI / 2, 0, 0]} position = {[0, -3, 0]}>
       <planeGeometry args={[400, 200, 400, 400]} />

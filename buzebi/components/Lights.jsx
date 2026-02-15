@@ -2,29 +2,25 @@
 const Lights = () => {
   return (
    <>
-         <directionalLight
+       <directionalLight
         castShadow
-        position={[6, 10, 4]}
-        intensity={1.1}
-        color={"#FFE2B8"}   
-        shadow-mapSize-width={2048}
-        shadow-mapSize-height={2048}
-        shadow-camera-far={40}
-        shadow-camera-left={-12}
-        shadow-camera-right={12}
-        shadow-camera-top={12}
-        shadow-camera-bottom={-12}
+        position={[10, 1, -15]} 
+        intensity={6}           
+        color={"#ff4500"}      
+        shadow-mapSize={[2048, 2048]}
       />
 
-<hemisphereLight
-        skyColor={"#C9D8FF"}
-        groundColor={"#6E7A3C"}
-        color = {"orange"}
-        intensity={2}
-        
+      <hemisphereLight
+        skyColor={"#020205"}    
+        groundColor={"#000000"}
+        intensity={0.3}        
       />
 
-<ambientLight intensity={2} color = "#FBEF76" />
+     
+      <ambientLight intensity={0.1} color="#ff4500" />
+
+     
+      <pointLight position={[2, 1, 2]} intensity={2.5} color="white" distance={10} />
    </>
   )
 }
