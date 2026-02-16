@@ -8,7 +8,7 @@ const GraveStone = () => {
      
   return (
    <>
-     <mesh scale = {0.4}  position={[10, 0, 0]}
+     <mesh scale = {0.6}  position={[10, 0, 3]}
         rotation={[ -Math.PI / 2, 0, -0.7]}>
         <boxGeometry args = {[10, 20]} />
         <meshBasicMaterial map = {graveTexture} color = "gray" />

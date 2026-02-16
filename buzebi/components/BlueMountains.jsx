@@ -170,7 +170,7 @@ const tv = useGLTF('./tv.glb');
      <primitive object={table.scene} scale = {0.07} position = {[-7, 0.7, 7]} />
      <primitive object={phone.scene} scale = {11} position = {[-7, 6.7, 7]} />
 
-     <primitive  object={plane.scene} scale = {0.03} position = {[0, 10, 0]} />
+     
     
 
       {text && <Html className='text'>

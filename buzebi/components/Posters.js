@@ -1,20 +1,41 @@
+ 
 
 export const posters = [
     {
         id: 1,
         name: "ცისფერი მთები",
-        img: "/mountImage.jpg"
+        img: "/mountImage.jpg",
+        music: '/cisferi.mp3'
     },
 
     {
         id: 2,
-        name: "ცისფერი მთები",
-        img: "/sherekilebi.jpg"
+        name: "შერეკილები",
+        img: "/sherekilebi.jpg",
+        music: '/sherekilebi.mp3'
     },
 
     {
         id: 3,
-        name: "ცისფერი მთები",
-        img: "/mountImage.jpg"
+        name: "მხიარული რომანი",
+        img: "/romani.jpg"
+    },
+
+    {
+        id: 4,
+        name: "ნატვრის ხე",
+        img: "/natvris.jpg"
+    },
+
+    {
+        id: 5,
+        name: "აბეზარა",
+        img: "/abezara.jpg"
+    },
+
+    {
+        id: 6,
+        name: "ბაში-აჩუკი",
+        img: "/bashi.jpg"
     }
 ]

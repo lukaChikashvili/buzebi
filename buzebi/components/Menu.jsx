@@ -29,34 +29,34 @@ const Menu = ({ isOpen }) => {
 
 
     { x: 1.70, y:  9.66, z: 20.5 },
-    { x: 10, y: 9, z: 22 },
+    { x: -11.97, y: 9.51, z: -7.37 },
     { x: -10, y: 7, z: 24 }
   ];
 
   const focusPoster = (index) => {
     const target = posterCameraPositions[index];
-  
     if (!target) return;
-
+  
+    
+    
+  
   
     gsap.to(camera.position, {
       x: target.x,
       y: target.y,
       z: target.z,
-      duration: 1.2,
-      ease: 'power3.inOut'
+      duration: 1.5,
+      delay: 1, 
+      ease: "power2.out"
     });
-
-
-  }
-
+  };
 
 
 
   const group = useRef();
   const { camera } = useThree();
   const chainRefs = useRef([]);
-  const { showMenu } = useContext(UserContext);
+  const { showMenu, setPosterIndex } = useContext(UserContext);
 
 
   const posterTextures = posters.map(p => useTexture(p.img));
@@ -82,6 +82,8 @@ const Menu = ({ isOpen }) => {
       gsap.to(camera.position, 
         { x: 0.093, y: 7.58, z: 
           40.333, duration: 1, ease: "circ.inOut", delay: 0.5 });
+
+         
     }
   }, [isOpen]);
 
@@ -93,24 +95,35 @@ const Menu = ({ isOpen }) => {
     });
   };
 
-  const handleNext = () => moveChains(15);
-  const handlePrev = () => moveChains(-15);
-
+  const handleNext = () => {
+    moveChains(15);
+  
+  
+  };
+  
+  const handlePrev = () => {
+    moveChains(-15);
+  
+   
+  };
   return (
-    <group ref={group} position={[10, 2, 30]} rotation={[-0.5, 0, 0]} visible={false}>
+    <group ref={group} position={[15, 0.5, 31]} rotation={[-0.5, 0, 0]} visible={false}>
 
 {posterTextures.map((texture, i) => (
   <MenuChainGroup
     key={i}
     ref={(el) => (chainRefs.current[i] = el)}
-    position={[i * 17 - ((posterTextures.length - 1) * 13) / 2, 1, 0]}
+    position={[i * 17 - ((posterTextures.length - 1) * 13) / 2, 0, 0]}
     posterTexture={texture}
-    onClick={() => focusPoster(i)}
+    onClick={() => {
+      focusPoster(i);      
+      setPosterIndex(i);    
+    }}
   />
 ))}
 
      
-<group position={[-10, -2, 3]}>
+<group position={[-15, -2, 3]}>
 
   <group
     position={[2, 5, 3]}

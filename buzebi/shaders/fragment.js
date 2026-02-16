@@ -22,6 +22,7 @@ void main() {
      
       vec3 sunsetGlow = vec3(1.0, 0.4, 0.0); 
       float glowStrength = smoothstep(1.2, 2.8, vElevation);
+      //color = mix(color, sunsetGlow, glowStrength * 0.02);
       color = mix(color, sunsetGlow, glowStrength * 0.6);
       
   } else if (uSeason < 2.5) {
