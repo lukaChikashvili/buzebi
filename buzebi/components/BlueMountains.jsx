@@ -64,7 +64,7 @@ const BlueMountains = () => {
           if(child.name === "desk2_SeconadryColor_0") {
             child.material.color = new THREE.Color('white');
           }
-          console.log(child.name)
+        
          }
        })
       

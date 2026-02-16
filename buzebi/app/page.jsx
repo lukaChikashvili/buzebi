@@ -42,9 +42,10 @@ const { info, showMenu, setShowMenu } = useContext(UserContext);
 
 
       <Canvas  camera={{ position: [
-2.74, 
-8.12, 
-24.025], fov: 70, near: 0.1, far: 10000 }}
+
+1.70, 
+9.66, 
+20.5], fov: 70, near: 0.1, far: 10000 }}
         shadows
         gl={{ physicallyCorrectLights: true, preserveDrawingBuffer: true }} onCreated={({ gl }) => {
           gl.setClearColor('#000000', 1)
@@ -52,7 +53,7 @@ const { info, showMenu, setShowMenu } = useContext(UserContext);
         
         <Physics>
        <Menu isOpen={showMenu} />
-       <OrbitControls makeDefault />
+      <OrbitControls />
        <Experience />
        </Physics>
        <Lights />

@@ -6,7 +6,7 @@ import gsap from "gsap";
 import { posters } from "./Posters";
 import { UserContext } from "../context/userContext";
 
-const MenuChainGroup = forwardRef(({ position, posterTexture }, ref) => {
+const MenuChainGroup = forwardRef(({ position, posterTexture, onClick }, ref) => {
   const chain = useGLTF("./chain.glb");
   
 
@@ -14,7 +14,7 @@ const MenuChainGroup = forwardRef(({ position, posterTexture }, ref) => {
     <group ref={ref} position={position}>
       <primitive object={chain.scene.clone()} scale={0.4} position={[-4, 4, -0.6]} />
       <primitive object={chain.scene.clone()} scale={0.4} position={[4, 4, -2]} />
-      <mesh position={[0, 5, 0]} rotation={[-1.7, 0, 0.26]}>
+      <mesh position={[0, 5, 0]} rotation={[-1.7, 0, 0.26]} onClick={onClick}>
         <boxGeometry args={[15, 0.5, 6]} />
         <meshStandardMaterial map={posterTexture} />
       </mesh>
@@ -23,6 +23,36 @@ const MenuChainGroup = forwardRef(({ position, posterTexture }, ref) => {
 });
 
 const Menu = ({ isOpen }) => {
+
+  const posterCameraPositions = [
+   
+
+
+    { x: 1.70, y:  9.66, z: 20.5 },
+    { x: 10, y: 9, z: 22 },
+    { x: -10, y: 7, z: 24 }
+  ];
+
+  const focusPoster = (index) => {
+    const target = posterCameraPositions[index];
+  
+    if (!target) return;
+
+  
+    gsap.to(camera.position, {
+      x: target.x,
+      y: target.y,
+      z: target.z,
+      duration: 1.2,
+      ease: 'power3.inOut'
+    });
+
+
+  }
+
+
+
+
   const group = useRef();
   const { camera } = useThree();
   const chainRefs = useRef([]);
@@ -50,7 +80,8 @@ const Menu = ({ isOpen }) => {
 
     if (showMenu) {
       gsap.to(camera.position, 
-        { x: 0, y: 9, z: 40, duration: 1, ease: "circ.inOut", delay: 0.5 });
+        { x: 0.093, y: 7.58, z: 
+          40.333, duration: 1, ease: "circ.inOut", delay: 0.5 });
     }
   }, [isOpen]);
 
@@ -68,14 +99,15 @@ const Menu = ({ isOpen }) => {
   return (
     <group ref={group} position={[10, 2, 30]} rotation={[-0.5, 0, 0]} visible={false}>
 
-      {posterTextures.map((texture, i) => (
-        <MenuChainGroup
-          key={i}
-          ref={el => (chainRefs.current[i] = el)}
-          position={[i * 17 - ((posterTextures.length - 1) * 15) / 2, 0, 0]} 
-          posterTexture={texture}
-        />
-      ))}
+{posterTextures.map((texture, i) => (
+  <MenuChainGroup
+    key={i}
+    ref={(el) => (chainRefs.current[i] = el)}
+    position={[i * 17 - ((posterTextures.length - 1) * 13) / 2, 1, 0]}
+    posterTexture={texture}
+    onClick={() => focusPoster(i)}
+  />
+))}
 
      
 <group position={[-10, -2, 3]}>
