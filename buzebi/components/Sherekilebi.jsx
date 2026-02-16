@@ -3,6 +3,7 @@ import React, { useContext, useMemo } from 'react'
 import Poster from './Poster';
 import { posters } from './Posters';
 import { UserContext } from '../context/userContext';
+import GraveStone from './GraveStone';
 
 const Sherekilebi = () => {
 
@@ -51,6 +52,7 @@ const Sherekilebi = () => {
   position={[11, 4, -13]}
   rotation={[0, -0.4, 0]} />
 
+<GraveStone />
       
       </group>
     
