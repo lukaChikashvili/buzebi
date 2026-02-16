@@ -7,11 +7,11 @@ export const UserContext = createContext(null);
 export const UserProvider = ({ children }) => {
     const [info, setInfo] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
-  
+    const [posterIndex, setPosterIndex] = useState(0)
 
 
   return (
-    <UserContext.Provider value={{ info, setInfo , showMenu, setShowMenu}}>
+    <UserContext.Provider value={{ info, setInfo , showMenu, setShowMenu, posterIndex,setPosterIndex}}>
       {children}
     </UserContext.Provider>
   );

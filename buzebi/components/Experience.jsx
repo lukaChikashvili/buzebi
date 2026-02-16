@@ -10,6 +10,7 @@ import { RigidBody } from "@react-three/rapier"
 import gsap from 'gsap'
 import { UserContext } from "../context/userContext"
 import Menu from "./Menu"
+import Sherekilebi from "./Sherekilebi"
 
 const Experience = () => {
   
@@ -96,6 +97,8 @@ useEffect(() => {
     </RigidBody>
     <BlueMountains />
     <Wall />
+
+    <Sherekilebi />
 
     {houses.map((item, i) => {
         const clonedHouse = house.scene.clone(true);

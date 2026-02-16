@@ -9,7 +9,7 @@ export const posters = [
     {
         id: 2,
         name: "ცისფერი მთები",
-        img: "/romani.jpg"
+        img: "/sherekilebi.jpg"
     },
 
     {

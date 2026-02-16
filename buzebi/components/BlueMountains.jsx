@@ -2,14 +2,18 @@
 import { Html, Text3D, useGLTF, useMatcapTexture, useTexture } from '@react-three/drei'
 import React, { use, useContext, useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
-import { posterVertex } from '../shaders/poster/vertex'
-import { posterFragment } from '../shaders/poster/fragment'
+
 import { useFrame, useThree } from '@react-three/fiber'
 import gsap from 'gsap'
 import { UserContext } from '../context/userContext'
+import Poster from './Poster'
+import { posters } from './Posters'
 
 const BlueMountains = () => {
     const [matcapTexture] = useMatcapTexture('1A2461_3D70DB_2C3C8F_2C6CAC', 256);
+
+
+    const { posterIndex, setPosterIndex } = useContext(UserContext);
 
     const texture = useTexture('./blue.jpg');
   let shaderRef = useRef();
@@ -28,13 +32,7 @@ const BlueMountains = () => {
 
 
 
-    const uniforms = useRef({
-        uTime: { value: 0 },
-        uAmplitude: { value: 0.3 },
-        uFrequency: { value: new THREE.Vector2(1.55, 2.0) },
-        uSpeed: { value: 3.0 },
-        uTexture: { value: texture },
-      });
+    
 
       useFrame(({ clock }) => {
         if (shaderRef.current) {
@@ -46,6 +44,8 @@ const BlueMountains = () => {
 
      //add wood texture
      const woodTexture = useTexture('./wood.jpg');
+     const plane = useGLTF('./paper_plane.glb');
+
 
      useEffect(() => {
 
@@ -153,14 +153,11 @@ const tv = useGLTF('./tv.glb');
       </Text3D>
       
 
-        <mesh
-        position={[15, 12, -10]}  
-        rotation={[0, -0.9, 0]}    
-      >
-        <planeGeometry args={[30, 10, 10, 10]} /> 
-        <shaderMaterial   ref={shaderRef}
-        uniforms={uniforms.current} vertexShader={posterVertex} fragmentShader={posterFragment}  />
-      </mesh>
+      <Poster
+  image={posters[posterIndex].img}
+  position={[15, 12, -10]}
+  rotation={[0, -0.9, 0]}
+/>
 
      
 
@@ -172,6 +169,8 @@ const tv = useGLTF('./tv.glb');
      
      <primitive object={table.scene} scale = {0.07} position = {[-7, 0.7, 7]} />
      <primitive object={phone.scene} scale = {11} position = {[-7, 6.7, 7]} />
+
+     <primitive  object={plane.scene} scale = {0.03} position = {[0, 10, 0]} />
     
 
       {text && <Html className='text'>

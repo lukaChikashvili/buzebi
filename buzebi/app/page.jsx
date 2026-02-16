@@ -52,7 +52,7 @@ const { info, showMenu, setShowMenu } = useContext(UserContext);
         
         <Physics>
        <Menu isOpen={showMenu} />
-       
+       <OrbitControls makeDefault />
        <Experience />
        </Physics>
        <Lights />
