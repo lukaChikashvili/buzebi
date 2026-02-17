@@ -11,6 +11,7 @@ import gsap from 'gsap'
 import { UserContext } from "../context/userContext"
 import Menu from "./Menu"
 import Sherekilebi from "./Sherekilebi"
+import Romani from "./Romani"
 
 const Experience = () => {
 
@@ -104,6 +105,7 @@ useEffect(() => {
     <Wall />
 
     <Sherekilebi />
+    <Romani />
 
     {houses.map((item, i) => {
         const clonedHouse = house.scene.clone(true);

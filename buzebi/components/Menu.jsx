@@ -30,7 +30,7 @@ const Menu = ({ isOpen }) => {
 
     { x: 1.70, y:  9.66, z: 20.5 },
     { x: -11.97, y: 9.51, z: -7.37 },
-    { x: -10, y: 7, z: 24 }
+    { x: 64.54, y: 12.54, z: 21 }
   ];
 
   const focusPoster = (index) => {
