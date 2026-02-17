@@ -18,7 +18,8 @@ export const posters = [
     {
         id: 3,
         name: "მხიარული რომანი",
-        img: "/romani.jpg"
+        img: "/romani.jpg",
+        music: '/romani.mp3'
     },
 
     {

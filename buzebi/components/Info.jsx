@@ -6,7 +6,9 @@ import { useThree } from '@react-three/fiber';
 
 const Info = ({ title, desc,  }) => {
 
-  const { setInfo } = useContext(UserContext);
+  const { setInfo, cameraReturn } = useContext(UserContext);
+
+
 
 
   const container = useRef()
@@ -54,15 +56,12 @@ const Info = ({ title, desc,  }) => {
   }, []);
 
   const handleClose = () => {
-    tl.current.reverse()
+    tl.current.reverse();
   
     tl.current.eventCallback("onReverseComplete", () => {
-      setInfo(false)
+      setInfo(null); 
     });
-
-    
-
-  }
+  };
   
 
 
@@ -83,7 +82,7 @@ const Info = ({ title, desc,  }) => {
       </div>
 
       <div className="relative z-10 px-24 py-12 h-full flex flex-col gap-8">
-        <h1 ref={titleRef} className="text-white text-4xl font-bold">
+        <h1 ref={titleRef} className="text-[#FFC300] text-4xl font-bold">
           {title}
         </h1>
 

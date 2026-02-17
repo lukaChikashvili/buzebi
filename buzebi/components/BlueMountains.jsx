@@ -13,16 +13,16 @@ const BlueMountains = () => {
     const [matcapTexture] = useMatcapTexture('1A2461_3D70DB_2C3C8F_2C6CAC', 256);
 
 
-    const { posterIndex, setPosterIndex } = useContext(UserContext);
+    const { posterIndex, cameraReturn, info} = useContext(UserContext);
 
-    const texture = useTexture('./blue.jpg');
+  
   let shaderRef = useRef();
   let bookRef = useRef();
   const textRef = useRef()
 
   // text
   const [text, setText] = useState(false);
- const {setInfo } = useContext(UserContext);
+ const {setInfo, setCameraReturn } = useContext(UserContext);
 
  const table = useGLTF('./table.glb');
  const phone = useGLTF('./phone.glb');
@@ -114,6 +114,13 @@ const BlueMountains = () => {
       
 // show info
 const showInfo = () => {
+  setCameraReturn({
+    x: 1.7,
+    y: 9.66,
+    z: 20.5
+  });
+
+
   gsap.to(camera.position, {
     x: 1,
     y:9,
@@ -123,13 +130,28 @@ const showInfo = () => {
     ease: "circ.inOut"
   });
 
-  setInfo(true);
+  setInfo({
+    title: "ცისფერი მთები ანუ დაუჯერებელი ამბავი",
+    
+    desc: "ქართული მხატვრული ფილმი..."
+  });
 
 }
 
 // old tv model
 const tv = useGLTF('./tv.glb');
 
+useEffect(() => {
+  if (info === null && cameraReturn) {
+    gsap.to(camera.position, {
+      x: cameraReturn.x,
+      y: cameraReturn.y,
+      z: cameraReturn.z,
+      duration: 1,
+      ease: "circ.inOut",
+    });
+  }
+}, [info]);
     
 
   return (
