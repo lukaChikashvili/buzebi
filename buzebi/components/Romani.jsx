@@ -21,6 +21,8 @@ const { setInfo, setCameraReturn } = useContext(UserContext);
     const deskModel = useGLTF('./desk.glb');
     const bookModel = useGLTF('./book.glb');
     const tv = useGLTF('./tv.glb');
+    const car = useGLTF('./car.glb');
+
 
     const appearText = () => {
       setText(true);
@@ -124,6 +126,7 @@ const { setInfo, setCameraReturn } = useContext(UserContext);
   position={[11, 4, -13]}
   rotation={[0, -0.4, 0]} />
 
+<primitive object={car.scene} scale = {5} rotation = {[0, 0.6, 0]} position = {[8, -6, 0]} />
 
       
       </group>

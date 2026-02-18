@@ -15,6 +15,9 @@ const BlueMountains = () => {
 
     const { posterIndex, cameraReturn, info} = useContext(UserContext);
 
+    const oldMan = useGLTF('./old_man.glb');
+
+
   
   let shaderRef = useRef();
   let bookRef = useRef();
@@ -201,6 +204,8 @@ useEffect(() => {
            </h1>
         </Html>}
 
+
+   <primitive object={oldMan.scene} scale = {5} position = {[-10, 0, 10]} rotation = {[0, 1, 0]} />
 
     </>
   )
