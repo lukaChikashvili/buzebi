@@ -8,14 +8,22 @@ import gsap from 'gsap'
 import { UserContext } from '../context/userContext'
 import Poster from './Poster'
 import { posters } from './Posters'
+import { RigidBody } from '@react-three/rapier'
+import Sign from './Sign'
 
 const BlueMountains = () => {
     const [matcapTexture] = useMatcapTexture('1A2461_3D70DB_2C3C8F_2C6CAC', 256);
+
+    const cisferi = useTexture('./cisferi.jpg');
+
 
 
     const { posterIndex, cameraReturn, info} = useContext(UserContext);
 
     const oldMan = useGLTF('./old_man.glb');
+
+    const sign = useGLTF('./sign.glb');
+
 
 
   
@@ -205,8 +213,23 @@ useEffect(() => {
         </Html>}
 
 
-   <primitive object={oldMan.scene} scale = {5} position = {[-10, 0, 10]} rotation = {[0, 1, 0]} />
+<RigidBody colliders="hull"
+  mass={5}
+  type="dynamic"
+  enabledRotations={[true, true, true]}>
+   <primitive object={oldMan.scene} scale = {6.5} position = {[-10, 0, 10]} rotation = {[0, 1, 0]} />
+   </RigidBody>
 
+
+ <RigidBody mass = {0.5} colliders = "hull"  angularDamping={0.1}  linearDamping={0}>
+   <mesh position = {[-10, 50, 8]} rotation = {[0, 0, 0]}>
+     <boxGeometry args = {[7, 7, 0.5]} />
+     <meshBasicMaterial map = {cisferi} />
+   </mesh>
+   </RigidBody>
+
+
+<Sign scale = {2} position = {[-5, 0, 14]} rotation={[0, 1, 0]} image = "/cisferi.png" />
     </>
   )
 }

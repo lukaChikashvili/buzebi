@@ -14,7 +14,7 @@ const MenuChainGroup = forwardRef(({ position, posterTexture, onClick }, ref) =>
     <group ref={ref} position={position}>
       <primitive object={chain.scene.clone()} scale={0.4} position={[-4, 4, -0.6]} />
       <primitive object={chain.scene.clone()} scale={0.4} position={[4, 4, -2]} />
-      <mesh position={[0, 5, 0]} rotation={[-1.7, 0, 0.26]} onClick={onClick}>
+      <mesh position={[0, 4.3, 0]} rotation={[-1.6, 0, 0.3]} onClick={onClick}>
         <boxGeometry args={[15, 0.5, 6]} />
         <meshStandardMaterial map={posterTexture} />
       </mesh>
@@ -107,7 +107,7 @@ const Menu = ({ isOpen }) => {
    
   };
   return (
-    <group ref={group} position={[15, 0.5, 31]} rotation={[-0.5, 0, 0]} visible={false}>
+    <group ref={group} position={[15, 0.4, 31]} rotation={[-0.5, 0, 0]} visible={false}>
 
 {posterTextures.map((texture, i) => (
   <MenuChainGroup

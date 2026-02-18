@@ -15,8 +15,19 @@ import Romani from "./Romani"
 
 const Experience = () => {
 
+  const lamps = useMemo(() => [
+    { position: [-30, 0, -15], rotation: [0, Math.PI / 2, 0], scale: 0.4 },
+    { position: [-5, 0, 1], rotation: [0, Math.PI / 2, 0], scale: 0.3 },
+    { position: [5, 0, -4], rotation: [0, Math.PI / 2, 0], scale: 0.3 },
+    { position: [30, 0, 10], rotation: [0, Math.PI / 2, 0], scale: 0.3 },
+    { position: [40, 0, 10], rotation: [0, Math.PI / 2, 0], scale: 0.3 },
+    { position: [46, 0, -10], rotation: [0, Math.PI / 2, 0], scale: 0.3 },
+    { position: [-30, 0, -30], rotation: [0, Math.PI / 2, 0], scale: 0.3 },
+  ], []);
 
 
+
+  const lamp = useGLTF('./street_lamp.glb');
 
 
   
@@ -122,6 +133,21 @@ useEffect(() => {
         )
        })}
 
+
+{lamps.map((item, i) => {
+  const clonedLamp = lamp.scene.clone(true);
+
+  return (
+    <group
+      key={i}
+      position={item.position}
+      rotation={item.rotation}
+      scale={item.scale}
+    >
+      <primitive object={clonedLamp} />
+    </group>
+  );
+})}
   
    </>
   )
