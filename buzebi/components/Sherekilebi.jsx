@@ -6,6 +6,7 @@ import { UserContext } from '../context/userContext';
 import GraveStone from './GraveStone';
 import gsap from 'gsap'
 import { useThree } from '@react-three/fiber';
+import Sign from './Sign';
 
 const Sherekilebi = () => {
 
@@ -129,7 +130,10 @@ const { setInfo, setCameraReturn } = useContext(UserContext);
   rotation={[0, -0.4, 0]} />
 
 <GraveStone />
-      
+  
+
+<Sign scale = {1.7} position = {[18, -1, 2]} rotation={[0, -1, 0]} image = "/sherekilebi.png" />
+
       </group>
     
     </>

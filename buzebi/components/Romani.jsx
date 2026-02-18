@@ -6,6 +6,7 @@ import { posters } from './Posters';
 import { useThree } from '@react-three/fiber';
 import { UserContext } from '../context/userContext';
 import gsap from 'gsap'
+import Sign from './Sign';
 
 
 const Romani = () => {
@@ -128,6 +129,7 @@ const { setInfo, setCameraReturn } = useContext(UserContext);
 
 <primitive object={car.scene} scale = {5} rotation = {[0, 0.6, 0]} position = {[8, -6, 0]} />
 
+<Sign scale = {1.7} position = {[7, -2, -3]} rotation={[0, 0.2, 0]} image = "/romani.png" />
       
       </group>
    </>
