@@ -2,6 +2,7 @@
 import { useThree } from "@react-three/fiber";
 import { createContext, useState } from "react";
 import { posters } from "../components/Posters";
+import gsap from 'gsap'
 
 export const UserContext = createContext(null);
 
@@ -11,12 +12,25 @@ export const UserProvider = ({ children }) => {
     const [posterIndex, setPosterIndex] = useState(0);
     const [cameraReturn, setCameraReturn] = useState(null);
 
+    
+
+
+    const cinemaCamera = (camera) => {
+       gsap.to(camera.position, {
+        x: -100.40,
+        y: 19.88,
+        z: 18.88,
+        duration: 1,
+        ease: "power2.inOut"
+       });
+
+    }
 
  
 
 
   return (
-    <UserContext.Provider value={{ cameraReturn, setCameraReturn, info, setInfo , showMenu, setShowMenu, posterIndex,setPosterIndex}}>
+    <UserContext.Provider value={{cinemaCamera, cameraReturn, setCameraReturn, info, setInfo , showMenu, setShowMenu, posterIndex,setPosterIndex}}>
       {children}
     </UserContext.Provider>
   );
