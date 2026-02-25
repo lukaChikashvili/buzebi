@@ -1,9 +1,9 @@
 import { Clone, useGLTF, useTexture } from '@react-three/drei'
-import React, { useMemo } from 'react'
+import React, { forwardRef, useMemo } from 'react'
 import * as THREE from 'three'
 import { clone } from 'three/examples/jsm/utils/SkeletonUtils'
 
-const Sign = ({image, scale, position = [0, 0, 0], rotation = [0, 0, 0]})=> {
+const Sign = forwardRef(({image, scale, position = [0, 0, 0], rotation = [0, 0, 0], onPointerOver, onPointerOut}, ref)=> {
     
     const signModel = useGLTF('./sign.glb');
     const texture = useTexture(image);
@@ -16,7 +16,7 @@ const Sign = ({image, scale, position = [0, 0, 0], rotation = [0, 0, 0]})=> {
 
   return (
    <>
-    <group position={position} rotation={rotation} scale={scale}>
+    <group ref = {ref} position={position} rotation={rotation} scale={scale} onPointerOut = {onPointerOut} onPointerOver={onPointerOver}>
       
       
       <primitive object={signScene} />
@@ -34,6 +34,6 @@ const Sign = ({image, scale, position = [0, 0, 0], rotation = [0, 0, 0]})=> {
   
    </>
   )
-}
+})
 
 export default Sign

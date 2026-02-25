@@ -12,6 +12,7 @@ import { UserContext } from "../context/userContext"
 import Menu from "./Menu"
 import Sherekilebi from "./Sherekilebi"
 import Romani from "./Romani"
+import Cinema from "./Cinema"
 
 const Experience = () => {
 
@@ -149,6 +150,8 @@ useEffect(() => {
   );
 })}
   
+
+  <Cinema />
    </>
   )
 }

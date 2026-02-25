@@ -16,6 +16,8 @@ const BlueMountains = () => {
 
     const cisferi = useTexture('./cisferi.jpg');
 
+    const signRef = useRef();
+
 
 
     const { posterIndex, cameraReturn, info} = useContext(UserContext);
@@ -25,6 +27,25 @@ const BlueMountains = () => {
     const sign = useGLTF('./sign.glb');
 
 
+    const handleRotate = () => {
+      if (!signRef.current) return
+    
+      gsap.to(signRef.current.rotation, {
+        y: signRef.current.rotation.y + 5.8,
+        duration: 0.6,
+        ease: "power3.out"
+      })
+    }
+
+    const handleRotateBack = () => {
+      if (!signRef.current) return
+    
+      gsap.to(signRef.current.rotation, {
+        y: signRef.current.rotation.y - 5.8,
+        duration: 0.6,
+        ease: "power3.out"
+      })
+    }
 
   
   let shaderRef = useRef();
@@ -144,7 +165,11 @@ const showInfo = () => {
   setInfo({
     title: "ცისფერი მთები ანუ დაუჯერებელი ამბავი",
     
-    desc: "ქართული მხატვრული ფილმი..."
+    desc: `   
+    „ცისფერი მთები ანუ დაუჯერებელი ამბავი“ — ქართული მხატვრული ფილმი. მისი რეჟისორია ელდარ შენგელაია. გამოვიდა 1984 წელს. ფილმი გადაღებულია რეზო ჭეიშვილის ამავე სახელწოდების მოთხრობის მიხედვით.
+    ახალგაზრდა მწერალს რედაქციაში მოთხრობა მიაქვს. მისი განხილვის მოლოდინში გადის შემოდგომა, ზამთარი, გაზაფხული… მოთხრობას არათუ არავინ კითხულობს, მისი ყველა არსებული ეგზემპლარიც უკვალოდ ქრება. ამ დაწესებულებაში ყველა თავისი საქმით არის გართული: დირექტორი მუდამ გადარბენაზეა — თათბირიდან ბანკში, ბანკიდან შეხვედრაზე, შეხვედრიდან ბანკეტზე და ასე დაუსრულებლად, რედაქტორებიდან ზოგი ფრანგულს სწავლობს, ზოგი კერავს, ზოგი საუზმეს იმზადებს, ვიღაც შვებულებაშია, ვიღაც — მივლინებაში, სხვები ჭადრაკს თამაშობენ… ერთადერთი ადამიანი, ვინც ხელნაწერებს კითხულობს, მღებავია… ფილმი ალეგორიული კომედიაა. იგი ნიღაბს ხდის საბჭოთა ბიუროკრატიზმს და უპასუხისმგებლობას. რედაქციაში მუშაობენ თავიანთი ვიწრო, ობივატელური ინტერესების ჩარჩოში მომწყვდეული ადამიანები; ამ სისტემის არაეფექტურობა სრულდება პირდაპირ მნიშვნელობით დაწესებულების ნგრევით, გადატანით კი — საბჭოთა სისტემის ნგრევით.
+    
+    `
   });
 
 }
@@ -200,8 +225,8 @@ useEffect(() => {
      <primitive object={tv.scene} scale = {0.06} rotation = {[0, 0.8, 0]} position = {[6.5, 7.5, 12]} />
 
      
-     <primitive object={table.scene} scale = {0.07} position = {[-7, 0.7, 7]} />
-     <primitive object={phone.scene} scale = {11} position = {[-7, 6.7, 7]} />
+     {/* <primitive object={table.scene} scale = {0.07} position = {[-7, 0.7, 7]} />
+     <primitive object={phone.scene} scale = {11} position = {[-7, 6.7, 7]} /> */}
 
      
     
@@ -213,7 +238,7 @@ useEffect(() => {
         </Html>}
 
 
-<RigidBody colliders="hull"
+ <RigidBody colliders = "trimesh"
   mass={5}
   type="dynamic"
   enabledRotations={[true, true, true]}>
@@ -221,15 +246,21 @@ useEffect(() => {
    </RigidBody>
 
 
+
  <RigidBody mass = {0.5} colliders = "hull"  angularDamping={0.1}  linearDamping={0}>
-   <mesh position = {[-10, 50, 8]} rotation = {[0, 0, 0]}>
+   <mesh position = {[-11, 50, 8]} rotation = {[0, 0, 0]}>
      <boxGeometry args = {[7, 7, 0.5]} />
      <meshBasicMaterial map = {cisferi} />
    </mesh>
    </RigidBody>
 
+    
 
-<Sign scale = {2} position = {[-5, 0, 14]} rotation={[0, 1, 0]} image = "/cisferi.png" />
+
+  <Sign ref = {signRef} scale = {2} position = {[-5, 0, 14]} 
+  rotation={[0, 1, 0]} image = "/cisferi.png" onPointerOver = {handleRotate}
+  onPointerOut = {handleRotateBack}
+         /> 
     </>
   )
 }
