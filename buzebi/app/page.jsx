@@ -118,7 +118,7 @@ const audioRef = useRef(null);
         
         <Physics>
        <Menu isOpen={showMenu} />
-    
+     
        <Experience />
        </Physics>
        <Lights />

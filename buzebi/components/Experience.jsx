@@ -151,7 +151,8 @@ useEffect(() => {
 })}
   
 
-  <Cinema />
+  <Cinema screenProps={{position: [0, 2.5, -3.6],  
+                        size: [10.5, 4],}} />
    </>
   )
 }
