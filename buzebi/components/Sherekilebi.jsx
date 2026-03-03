@@ -8,11 +8,11 @@ import gsap from 'gsap'
 import { useThree } from '@react-three/fiber';
 import Sign from './Sign';
 
-const Sherekilebi = () => {
+const Sherekilebi = ({ setActiveMovie }) => {
 
     const [text, setText] = useState(false);
     const { camera } = useThree();
-const { setInfo, setCameraReturn } = useContext(UserContext);
+const { setInfo, setCameraReturn, cinemaCamera, setCinemaStart } = useContext(UserContext);
     
     const bookRef = useRef();
     const textRef = useRef();
@@ -95,6 +95,18 @@ const { setInfo, setCameraReturn } = useContext(UserContext);
     const tvClone = useMemo(() => {
         return tv.scene.clone()
     }, [tv]);
+
+    const handleTv = () => {
+
+      setActiveMovie('https://res.cloudinary.com/ddkwnpzev/video/upload/v1772567940/%D0%90%D1%85%D0%B5%D0%B8%D0%B2%D1%8B%D1%81%D1%86%D3%99%D0%B0_-_%E1%83%A8%E1%83%94%E1%83%A0%E1%83%94%E1%83%99%E1%83%98%E1%83%9A%E1%83%94%E1%83%91%E1%83%98_%E1%83%90%E1%83%A4%E1%83%AE%E1%83%90%E1%83%96%E1%83%A3%E1%83%A0%E1%83%90%E1%83%93_online-video-cutter.com_ythpjw.mp4')
+      
+      cinemaCamera(camera);
+     
+      
+      setTimeout(() => {
+        setCinemaStart(true);
+      }, 1200);
+    }
     
 
   return (
@@ -122,7 +134,7 @@ const { setInfo, setCameraReturn } = useContext(UserContext);
 
       <primitive
         object={tvClone}
-        scale = {0.06} rotation = {[0, 2.5, 0]} position = {[-1, 2.2, 2]}
+        scale = {0.06} rotation = {[0, 2.5, 0]} position = {[-1, 2.2, 2]} onClick = {handleTv}
       />
 
       <Poster  image={posters[1].img}

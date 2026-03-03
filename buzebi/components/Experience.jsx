@@ -124,7 +124,7 @@ useEffect(() => {
     <BlueMountains setActiveMovie = {setActiveMovie} />
     <Wall />
 
-    <Sherekilebi />
+    <Sherekilebi setActiveMovie = {setActiveMovie} />
     <Romani />
 
     {houses.map((item, i) => {

@@ -11,7 +11,7 @@ const Screen = forwardRef(({ position, size = [10, 6.2], movieSrc }, ref) => {
     vid.src = movieSrc;
     vid.crossOrigin = "anonymous";
     vid.loop = true;
-    vid.muted = true;
+    vid.muted = false;
     vid.playsInline = true;
     vid.load();
 
