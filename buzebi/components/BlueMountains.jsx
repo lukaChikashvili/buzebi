@@ -11,7 +11,12 @@ import { posters } from './Posters'
 import { RigidBody } from '@react-three/rapier'
 import Sign from './Sign'
 
-const BlueMountains = () => {
+
+const BlueMountains = ({ setActiveMovie }) => {
+  const { camera} = useThree();
+
+
+
     const [matcapTexture] = useMatcapTexture('1A2461_3D70DB_2C3C8F_2C6CAC', 256);
 
     const cisferi = useTexture('./cisferi.jpg');
@@ -61,6 +66,18 @@ const BlueMountains = () => {
  const phone = useGLTF('./phone.glb');
 
 
+ const handleTv = () => {
+
+  cinemaCamera(camera);
+
+  
+
+  
+  setActiveMovie('/movies/blueMountains.mp4');
+
+   
+
+ }
 
 
 
@@ -142,7 +159,7 @@ const BlueMountains = () => {
         })
       }
 
-      const { camera} = useThree();
+     
 
       
 // show info
@@ -223,7 +240,7 @@ useEffect(() => {
      <primitive object={deskModel.scene}  rotation = {[0, -0.5, 0]} position = {[6, 5.5, 12]}  scale = {0.10} />
       <primitive onClick = {showInfo} onPointerOver = {appearText} onPointerOut = {hideText}  ref = {bookRef} object={book.scene} scale = {3.5} rotation = {[0, 0.7, 0]} position = {[3, 8, 10]} />
 
-     <primitive ref = {tvRef} onClick = {() => cinemaCamera(camera)} object={tv.scene} scale = {0.06} rotation = {[0, 0.8, 0]} position = {[6.5, 7.5, 12]}  />
+     <primitive ref = {tvRef} onClick = {handleTv} object={tv.scene} scale = {0.06} rotation = {[0, 0.8, 0]} position = {[6.5, 7.5, 12]}  />
 
      
      {/* <primitive object={table.scene} scale = {0.07} position = {[-7, 0.7, 7]} />

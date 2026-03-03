@@ -1,7 +1,7 @@
 import { grassVertex } from "../shaders/vertex"
 import { grassFragment } from "../shaders/fragment"
 import * as THREE from 'three'
-import { useContext, useEffect, useMemo, useRef } from "react"
+import { useContext, useEffect, useMemo, useRef, useState } from "react"
 import { useFrame, useThree } from "@react-three/fiber"
 import { Environment, Sky, Stars, useGLTF } from "@react-three/drei"
 import BlueMountains from "./BlueMountains"
@@ -15,6 +15,15 @@ import Romani from "./Romani"
 import Cinema from "./Cinema"
 
 const Experience = () => {
+
+  const [activeMovie, setActiveMovie] = useState(null);
+
+  const videoRef = useRef();
+
+  
+
+
+ 
 
   const lamps = useMemo(() => [
     { position: [-30, 0, -15], rotation: [0, Math.PI / 2, 0], scale: 0.4 },
@@ -113,7 +122,7 @@ useEffect(() => {
       />
     </mesh>
     </RigidBody>
-    <BlueMountains />
+    <BlueMountains setActiveMovie = {setActiveMovie} />
     <Wall />
 
     <Sherekilebi />
@@ -152,7 +161,10 @@ useEffect(() => {
   
 
   <Cinema screenProps={{position: [0, 2.5, -3.6],  
-                        size: [10.5, 4],}} />
+                        size: [10.5, 4], 
+                        movieSrc: activeMovie}} />
+
+
    </>
   )
 }
