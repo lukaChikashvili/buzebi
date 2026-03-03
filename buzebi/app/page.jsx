@@ -22,11 +22,21 @@ export default function Home() {
 
 
 
-const { info, showMenu, setShowMenu, posterIndex } = useContext(UserContext);
+const { info, showMenu, setShowMenu, posterIndex, cinemaStart  } = useContext(UserContext);
 
 
 const audioRef = useRef(null);
   const titleRef = useRef();
+
+  useEffect(() => {
+    if (!audioRef.current) return;
+  
+    if (cinemaStart) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.play().catch(() => console.log("Audio blocked"));
+    }
+  }, [cinemaStart]);
 
  
   useEffect(() => {
@@ -42,7 +52,13 @@ const audioRef = useRef(null);
     };
 
     document.addEventListener("click", unlockAudio);
+
+    if(cinemaStart) {
+      
+    }
     return () => document.removeEventListener("click", unlockAudio);
+
+  
   }, []); 
 
   

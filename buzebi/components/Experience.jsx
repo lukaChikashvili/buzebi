@@ -18,7 +18,6 @@ const Experience = () => {
 
   const [activeMovie, setActiveMovie] = useState(null);
 
-  const videoRef = useRef();
 
   
 
