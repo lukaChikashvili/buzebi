@@ -73,7 +73,7 @@ const BlueMountains = ({ setActiveMovie }) => {
   
 
   
-  setActiveMovie('/movies/blueMountains.mp4');
+  setActiveMovie('https://res.cloudinary.com/ddkwnpzev/video/upload/v1772565957/%E1%83%A4%E1%83%98%E1%83%9A%E1%83%9B%E1%83%98_%E1%83%AA%E1%83%98%E1%83%A1%E1%83%A4%E1%83%94%E1%83%A0%E1%83%98_%E1%83%9B%E1%83%97%E1%83%94%E1%83%91%E1%83%98_%E1%83%90%E1%83%9C%E1%83%A3_%E1%83%93%E1%83%90%E1%83%A3%E1%83%AF%E1%83%94%E1%83%A0%E1%83%94%E1%83%91%E1%83%94%E1%83%9A%E1%83%98_%E1%83%90%E1%83%9B%E1%83%91%E1%83%90%E1%83%95%E1%83%98__gwlp2d.mp4');
 
    
 

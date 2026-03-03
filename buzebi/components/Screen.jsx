@@ -28,7 +28,6 @@ const Screen = forwardRef(({ position, size = [10, 6.2], movieSrc }, ref) => {
     return { video: vid, videoTexture: texture };
   }, [movieSrc]);
 
-  // Now useFrame is AFTER the useMemo it depends on
   useFrame(() => {
     if (videoTexture && video && !video.paused) {
       videoTexture.needsUpdate = true;
