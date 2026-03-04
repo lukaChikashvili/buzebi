@@ -19,14 +19,19 @@ export const UserProvider = ({ children }) => {
     const cinemaCamera = (camera) => {
    
         gsap.to(camera.position, {
-          x: -97.40,
-          y: 25.88,
-          z: 16.88,
+          x: -100.40,
+          y: 20.88,
+          z: 10.88,
+          
           duration: 1,
           ease: "power2.inOut"
          });
       
-      
+      gsap.to(camera.rotation, {
+        x: 0,
+        y: 0,
+        z: 0
+      })
 
     }
 

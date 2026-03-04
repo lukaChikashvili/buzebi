@@ -2,7 +2,7 @@ import { useFrame } from "@react-three/fiber";
 import React, { forwardRef, useEffect, useMemo } from "react";
 import * as THREE from "three";
 
-const Screen = forwardRef(({ position, size = [10, 6.2], movieSrc }, ref) => {
+const Screen = forwardRef(({ position, size = [12, 6.2], movieSrc }, ref) => {
 
   const { video, videoTexture } = useMemo(() => {
     if (!movieSrc) return { video: null, videoTexture: null };
