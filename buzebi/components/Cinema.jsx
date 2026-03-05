@@ -1,6 +1,6 @@
 import React from "react";
 import Screen from "./Screen";
-import { useTexture } from "@react-three/drei";
+import { useGLTF, useTexture } from "@react-three/drei";
 import * as THREE from 'three'
 
 
@@ -9,6 +9,10 @@ const Cinema = ({ screenProps }) => {
     const wood = useTexture('./wood2.jpg');
     const wall = useTexture('./wall1.jpg');
     const frame = useTexture('./frame.jpg');
+
+    //  models
+    const sofa = useGLTF('./sofa.glb');
+    const plant = useGLTF('./plant.glb');
 
 
     wood.wrapS = wood.wrapT = THREE.RepeatWrapping;
@@ -64,6 +68,9 @@ const Cinema = ({ screenProps }) => {
         <planeGeometry args={[12, 8]} />
         <meshBasicMaterial map = {wall}  />
       </mesh>
+
+      <primitive object={sofa.scene} scale = {0.25} rotation = {[0, 1.6, 0]} />
+      <primitive object={plant.scene} scale = {2} position = {[-5, 0, -3.3]} />
 
       
       <Screen  {...screenProps}  />
