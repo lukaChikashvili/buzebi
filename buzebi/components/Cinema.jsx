@@ -2,6 +2,7 @@ import React from "react";
 import Screen from "./Screen";
 import { useGLTF, useTexture } from "@react-three/drei";
 import * as THREE from 'three'
+import { EffectComposer, Bloom } from "@react-three/postprocessing";
 
 
 const Cinema = ({ screenProps }) => {
@@ -11,6 +12,7 @@ const Cinema = ({ screenProps }) => {
     const frame = useTexture('./frame.jpg');
     const gold = useTexture('./gold.avif');
     const cloth = useTexture('./cloth.jpg');
+    const poster = useTexture('./bluePoster.webp');
 
 
 
@@ -35,6 +37,9 @@ const Cinema = ({ screenProps }) => {
 
   return (
     <group position={[-100, 8, 0]} scale={5}>
+
+
+
 
      <rectAreaLight
         width={10}
@@ -94,6 +99,14 @@ const Cinema = ({ screenProps }) => {
           <boxGeometry args = {[1, 2.8, 0.1] }/>
           <meshBasicMaterial map = {cloth} color = "#1C4D8D"  />
       </mesh>
+
+      <mesh position = {[-6.01, 3.5, -3]}  rotation={[0, Math.PI / 2, 0]}>
+          <boxGeometry args = {[0.7, 2, 0.1] }/>
+          <meshBasicMaterial map = {poster}   />
+      </mesh>
+
+
+      
 
       <mesh position = {[6, 3.5, -3]}  rotation={[0, Math.PI / 2, 0]}>
           <boxGeometry args = {[1, 2.8, 0.1] }/>
