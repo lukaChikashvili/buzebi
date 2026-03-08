@@ -13,6 +13,7 @@ import Menu from "./Menu"
 import Sherekilebi from "./Sherekilebi"
 import Romani from "./Romani"
 import Cinema from "./Cinema"
+import Natvris from "./Natvris"
 
 const Experience = () => {
 
@@ -126,6 +127,7 @@ useEffect(() => {
 
     <Sherekilebi setActiveMovie = {setActiveMovie} />
     <Romani />
+    <Natvris />
 
     {houses.map((item, i) => {
         const clonedHouse = house.scene.clone(true);

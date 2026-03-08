@@ -1,12 +1,13 @@
 
 import { Html, useGLTF } from '@react-three/drei'
-import React, {  useContext, useMemo, useRef, useState } from 'react'
+import React, {  useContext, useEffect, useMemo, useRef, useState } from 'react'
 import Poster from './Poster';
 import { posters } from './Posters';
 import { useThree } from '@react-three/fiber';
 import { UserContext } from '../context/userContext';
 import gsap from 'gsap'
 import Sign from './Sign';
+import * as THREE from 'three'
 
 
 const Romani = () => {
@@ -23,6 +24,8 @@ const { setInfo, setCameraReturn } = useContext(UserContext);
     const bookModel = useGLTF('./book.glb');
     const tv = useGLTF('./tv.glb');
     const car = useGLTF('./car.glb');
+
+  
 
 
     const appearText = () => {

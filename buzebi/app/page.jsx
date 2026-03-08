@@ -134,7 +134,7 @@ const audioRef = useRef(null);
         
         <Physics gravity={[0, -9.81, 0]}>
        <Menu isOpen={showMenu} />
-     
+    
        <Experience />
        </Physics>
        <Lights />
