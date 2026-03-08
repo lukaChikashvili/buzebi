@@ -21,7 +21,7 @@ const { setInfo, setCameraReturn, cinemaCamera, setCinemaStart } = useContext(Us
     const deskModel = useGLTF('./desk.glb');
     const bookModel = useGLTF('./book.glb');
     const tv = useGLTF('./tv.glb');
-    const rose = useGLTF('./chinese_rose.glb');
+    
 
 
     const appearText = () => {
@@ -148,7 +148,8 @@ const { setInfo, setCameraReturn, cinemaCamera, setCinemaStart } = useContext(Us
 
 <Sign scale = {1.7} position = {[18, -1, 2]} rotation={[0, -1, 0]} image = "/sherekilebi.png" />
 
-<primitive object={rose.scene} position = {[10, 0, 3]} />
+
+
       </group>
     
     </>

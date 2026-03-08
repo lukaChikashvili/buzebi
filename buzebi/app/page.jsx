@@ -132,7 +132,7 @@ const audioRef = useRef(null);
           gl.setClearColor('#000000', 1)
         }}>
         
-        <Physics>
+        <Physics gravity={[0, -9.81, 0]}>
        <Menu isOpen={showMenu} />
      
        <Experience />
