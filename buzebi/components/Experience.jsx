@@ -14,6 +14,7 @@ import Sherekilebi from "./Sherekilebi"
 import Romani from "./Romani"
 import Cinema from "./Cinema"
 import Natvris from "./Natvris"
+import Gate from "./Gate"
 
 const Experience = () => {
 
@@ -113,7 +114,7 @@ useEffect(() => {
  
 <RigidBody type="fixed">
     <mesh rotation={[-Math.PI / 2, 0, 0]} position = {[0, -3, 0]}>
-      <planeGeometry args={[400, 200, 400, 400]} />
+      <planeGeometry args={[400, 700, 400, 400]} />
       <shaderMaterial
         vertexShader={grassVertex}
         fragmentShader={grassFragment}
@@ -128,6 +129,7 @@ useEffect(() => {
     <Sherekilebi setActiveMovie = {setActiveMovie} />
     <Romani />
     <Natvris />
+    <Gate />
 
     {houses.map((item, i) => {
         const clonedHouse = house.scene.clone(true);

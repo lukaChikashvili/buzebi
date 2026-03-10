@@ -124,9 +124,9 @@ const audioRef = useRef(null);
 
       <Canvas  camera={{ position: [
 
-1.70, 
-9.66, 
-20.5], fov: 70, near: 0.1, far: 10000 }}
+-5, 
+14, 
+150], fov: 70, near: 0.1, far: 10000 }}
         shadows
         gl={{ physicallyCorrectLights: true, preserveDrawingBuffer: true }} onCreated={({ gl }) => {
           gl.setClearColor('#000000', 1)
@@ -134,7 +134,7 @@ const audioRef = useRef(null);
         
         <Physics gravity={[0, -9.81, 0]}>
        <Menu isOpen={showMenu} />
-    
+   
        <Experience />
        </Physics>
        <Lights />
