@@ -1,5 +1,5 @@
 import { useGLTF, useTexture } from '@react-three/drei'
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useLayoutEffect, useRef } from 'react'
 import * as THREE from 'three'
 import gsap from 'gsap'
 import { useThree } from '@react-three/fiber'
@@ -22,6 +22,26 @@ const Gate = () => {
      const rulesRef = useRef();
 
      const initialX = -19.6;
+
+     useLayoutEffect(() => {
+      
+        const buttons = [
+            buttonRef.current.position, 
+            seasonRef.current.position, 
+            galleryRef.current.position, 
+            rulesRef.current.position
+        ];
+       
+        const ctx = gsap.context(() => {
+            gsap.from(buttons, {
+                x: -25, 
+                duration: 1,
+                ease: "power2.out",
+                stagger: 0.2 
+            });
+        });
+        return () => ctx.revert();
+    }, []);
    
 
     green.wrapS = green.wrapT = THREE.RepeatWrapping;
