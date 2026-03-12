@@ -10,6 +10,7 @@ import Poster from './Poster'
 import { posters } from './Posters'
 import { RigidBody } from '@react-three/rapier'
 import Sign from './Sign'
+import Box from './Box'
 
 
 const BlueMountains = ({ setActiveMovie }) => {
@@ -278,6 +279,8 @@ useEffect(() => {
   rotation={[0, 1, 0]} image = "/cisferi.png" onPointerOver = {handleRotate}
   onPointerOut = {handleRotateBack}
          /> 
+
+         <Box rotation = {[0, -1.2, 0]} position = {[10, 7.6, 13]} scale = {0.024} />
     </>
   )
 }
