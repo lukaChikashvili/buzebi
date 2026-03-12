@@ -1,9 +1,63 @@
-import { useGLTF } from '@react-three/drei'
-import React from 'react'
+import { useGLTF, useTexture } from '@react-three/drei'
+import React, { useEffect } from 'react'
+import * as THREE from 'three'
 
 const Gate = () => {
       const gate = useGLTF('./gate.glb');
       const lamp = useGLTF('./lamp.glb');
+
+      const green = useTexture('./green.jpg');
+      const marble = useTexture('./marble.jpg');
+      const whiteMarble = useTexture('./gold.jpg');
+
+
+
+    green.wrapS = green.wrapT = THREE.RepeatWrapping;
+
+    green.repeat.set(5, 5);
+
+    whiteMarble.wrapS = whiteMarble.wrapT = THREE.RepeatWrapping;
+
+    whiteMarble.repeat.set(1, 1);
+
+    const movies = useTexture('./movie.png');
+
+    useEffect(() => {
+        gate.scene.traverse((child) => {
+            if(child.isMesh) {
+                console.log(child.name);
+                if(child.name === "Sphere001__0") {
+                    child.material = child.material.clone();
+                    child.material.map = marble;
+                    child.material.color.set('#8F0177')
+                    child.material.needsUpdate = true
+                }
+
+                if(child.name === "Sphere016__0") {
+                    child.material = child.material.clone();
+                    child.material.map = marble;
+                    child.material.color.set('#8F0177')
+                    child.material.needsUpdate = true
+                }
+
+                if(child.name === "Box001__0") {
+                    child.material = child.material.clone();
+                    child.material.map = whiteMarble;
+                    child.material.color.set('#25343F')
+                    child.material.needsUpdate = true;
+                }
+               
+                if(child.name === "Box008__0") {
+                    child.material = child.material.clone();
+                    child.material.map = whiteMarble;
+                    child.material.color.set('#25343F')
+                    child.material.needsUpdate = true;
+                    
+                }
+            }
+        })
+
+    }, [gate]);
 
 
   return (
@@ -13,17 +67,21 @@ const Gate = () => {
  
  <mesh position={[-22, 10, 145]} rotation={[0, 1.5, 0]}>
         <boxGeometry args={[30, 20, 5]} />
-        <meshStandardMaterial color="#b8b5b0" />
+        <meshBasicMaterial map = {green} color = 'gray'  />
       </mesh>
 
       <mesh position={[11.5, 10, 145]} rotation={[0, 1.5, 0]}>
         <boxGeometry args={[30, 20, 5]} />
-        <meshStandardMaterial color="#b8b5b0" />
+        <meshBasicMaterial map = {green} color = 'gray' />
       </mesh>
 
       <primitive position = {[-22, 17, 121.5]} object={lamp.scene} scale = {0.01} />
       <primitive position = {[12, 17, 124]} object={lamp.scene.clone()} scale = {0.01} />
 
+  <mesh position={[-19.8, 13, 135]} rotation={[0, 1.5, 0]}>
+     <boxGeometry args = {[6, 2, 2.5]} />
+     <meshBasicMaterial map = {movies} />
+  </mesh>
 
  </>
   )

@@ -102,10 +102,10 @@ useEffect(() => {
   distance={450000} 
   sunPosition={[1, 0, 2]}                
   turbidity={10}                  
-  rayleigh={10}                   
+  rayleigh={40}                   
   mieCoefficient={0.01}          
   mieDirectionalG={0.10}         
-  elevation={0}                
+  elevation={-5}                
   azimuth={0.25} 
   
 />
