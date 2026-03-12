@@ -1,6 +1,7 @@
 import { useGLTF, useTexture } from '@react-three/drei'
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import * as THREE from 'three'
+import gsap from 'gsap'
 
 const Gate = () => {
       const gate = useGLTF('./gate.glb');
@@ -10,7 +11,7 @@ const Gate = () => {
       const marble = useTexture('./marble.jpg');
       const whiteMarble = useTexture('./gold.jpg');
 
-
+     const buttonRef = useRef();
 
     green.wrapS = green.wrapT = THREE.RepeatWrapping;
 
@@ -59,6 +60,31 @@ const Gate = () => {
 
     }, [gate]);
 
+    const initialZ = useRef();
+
+    useEffect(() => {
+        if(buttonRef.current){
+          initialZ.current = buttonRef.current.position.x;
+        }
+      }, []);
+
+
+    const hover = () => {
+        gsap.to(buttonRef.current.position, {
+            x: initialZ.current - 0.2, 
+            duration: 0.2,
+            ease: "power2.out"
+          });
+    }
+
+    const leave = () => {
+        gsap.to(buttonRef.current.position, {
+            x: initialZ.current,
+            duration: 0.2,
+            ease: "power2.out"
+          });
+    }
+
 
   return (
  <>
@@ -78,7 +104,8 @@ const Gate = () => {
       <primitive position = {[-22, 17, 121.5]} object={lamp.scene} scale = {0.01} />
       <primitive position = {[12, 17, 124]} object={lamp.scene.clone()} scale = {0.01} />
 
-  <mesh position={[-19.8, 13, 135]} rotation={[0, 1.5, 0]}>
+  <mesh ref = {buttonRef} position={[-19.6, 13, 135]} rotation={[0, 1.5, 0]} 
+  onPointerEnter={hover} onPointerLeave={leave}>
      <boxGeometry args = {[6, 2, 2.5]} />
      <meshBasicMaterial map = {movies} />
   </mesh>
