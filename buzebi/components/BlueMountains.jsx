@@ -165,7 +165,7 @@ const BlueMountains = ({ setActiveMovie }) => {
 const showInfo = () => {
   setCameraReturn({
     x: 1.7,
-    y: 9.66,
+    y: 8.66,
     z: 20.5
   });
 
@@ -242,8 +242,8 @@ useEffect(() => {
      <primitive ref = {tvRef} onClick = {handleTv} object={tv.scene} scale = {0.06} rotation = {[0, 0.8, 0]} position = {[6.5, 7.5, 12]}  />
 
      
-     {/* <primitive object={table.scene} scale = {0.07} position = {[-7, 0.7, 7]} />
-     <primitive object={phone.scene} scale = {11} position = {[-7, 6.7, 7]} /> */}
+      <primitive object={table.scene} scale = {0.07} position = {[-7, 0.7, 7]} />
+     <primitive object={phone.scene} scale = {11} position = {[-7, 6.7, 7]} /> 
 
      
     

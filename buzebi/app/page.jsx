@@ -125,7 +125,7 @@ const audioRef = useRef(null);
       <Canvas  camera={{ position: [
 
 -5, 
-14, 
+12, 
 150], fov: 70, near: 0.1, far: 10000 }}
         shadows
         gl={{ physicallyCorrectLights: true, preserveDrawingBuffer: true }} onCreated={({ gl }) => {
@@ -134,7 +134,7 @@ const audioRef = useRef(null);
         
         <Physics gravity={[0, -9.81, 0]}>
        <Menu isOpen={showMenu} />
-   <OrbitControls />
+   
        <Experience />
        </Physics>
        <Lights />

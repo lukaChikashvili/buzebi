@@ -81,12 +81,12 @@ const Menu = ({ isOpen }) => {
 
     if (showMenu) {
       gsap.to(camera.position, 
-        { x: 0.093, y: 7.58, z: 
+        { x: 0.093, y: 9.58, z: 
           40.333, duration: 1, ease: "circ.inOut", delay: 0.5 });
 
          
     }
-  }, [isOpen]);
+  }, [isOpen, showMenu, camera]);
 
   const moveChains = (xOffset) => {
     chainRefs.current.forEach(ref => {
@@ -108,7 +108,7 @@ const Menu = ({ isOpen }) => {
    
   };
   return (
-    <group ref={group} position={[15, 0.4, 31]} rotation={[-0.5, 0, 0]} visible={false}>
+    <group ref={group} position={[15, 5, 31]} rotation={[-0.5, 0, 0]} visible={false}>
 
 {posterTextures.map((texture, i) => (
   <MenuChainGroup
@@ -124,7 +124,7 @@ const Menu = ({ isOpen }) => {
 ))}
 
      
-<group position={[-15, -2, 3]}>
+<group position={[-15, -3, 3]}>
 
   <group
     position={[2, 5, 3]}

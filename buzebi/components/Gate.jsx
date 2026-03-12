@@ -2,6 +2,7 @@ import { useGLTF, useTexture } from '@react-three/drei'
 import React, { useEffect, useRef } from 'react'
 import * as THREE from 'three'
 import gsap from 'gsap'
+import { useThree } from '@react-three/fiber'
 
 const Gate = () => {
       const gate = useGLTF('./gate.glb');
@@ -10,6 +11,8 @@ const Gate = () => {
       const green = useTexture('./green.jpg');
       const marble = useTexture('./marble.jpg');
       const whiteMarble = useTexture('./gold.jpg');
+
+      const { camera } = useThree();
 
      const buttonRef = useRef();
 
@@ -85,6 +88,17 @@ const Gate = () => {
           });
     }
 
+    const startGame = () => {
+        gsap.to(camera.position, {
+            x: 1.70,
+            y: 9.66,
+            z: 22,
+            duration: 1.5,
+            delay: 1, 
+            ease: "power2.inOut"
+        })
+    }
+
 
   return (
  <>
@@ -105,7 +119,7 @@ const Gate = () => {
       <primitive position = {[12, 17, 124]} object={lamp.scene.clone()} scale = {0.01} />
 
   <mesh ref = {buttonRef} position={[-19.6, 13, 135]} rotation={[0, 1.5, 0]} 
-  onPointerEnter={hover} onPointerLeave={leave}>
+  onPointerEnter={hover} onPointerLeave={leave} onClick={startGame}>
      <boxGeometry args = {[6, 2, 2.5]} />
      <meshBasicMaterial map = {movies} />
   </mesh>

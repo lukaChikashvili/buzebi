@@ -20,11 +20,28 @@ const Experience = () => {
 
   const [activeMovie, setActiveMovie] = useState(null);
 
-
-  
-
-
  
+const steps = [10, 30, 50, 60, 50, 30];
+
+const index = useRef(0);
+const progress = useRef(0);
+
+useFrame((state, delta) => {
+
+  progress.current += delta * 0.1; 
+
+  if (progress.current >= 1) {
+    progress.current = 0
+    index.current = (index.current + 1) % steps.length;
+  }
+
+  const start = steps[index.current];
+  const end = steps[(index.current + 1) % steps.length];
+
+  const value = start + (end - start) * progress.current;
+
+  setSun(value);
+})
 
   const lamps = useMemo(() => [
     { position: [-30, 0, -15], rotation: [0, Math.PI / 2, 0], scale: 0.4 },
@@ -74,7 +91,7 @@ useFrame((state) => {
 const house = useGLTF('./house.glb');
 
 const { camera } = useThree();
-const { info, showMenu } = useContext(UserContext);
+const { info, setSun, sun } = useContext(UserContext);
 
 useEffect(() => {
   if(info === false) {
@@ -102,7 +119,7 @@ useEffect(() => {
   distance={450000} 
   sunPosition={[1, 0, 2]}                
   turbidity={10}                  
-  rayleigh={40}                   
+  rayleigh={sun}                   
   mieCoefficient={0.01}          
   mieDirectionalG={0.10}         
   elevation={-5}                

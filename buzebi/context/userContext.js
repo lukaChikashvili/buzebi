@@ -14,6 +14,7 @@ export const UserProvider = ({ children }) => {
    const [cinemaStart, setCinemaStart] = useState(false);
 
     
+    const [sun, setSun] = useState(0);
 
 
     const cinemaCamera = (camera) => {
@@ -39,7 +40,7 @@ export const UserProvider = ({ children }) => {
 
 
   return (
-    <UserContext.Provider value={{cinemaStart, setCinemaStart, cinemaCamera, cameraReturn, setCameraReturn, info, setInfo , showMenu, setShowMenu, posterIndex,setPosterIndex}}>
+    <UserContext.Provider value={{sun, setSun, cinemaStart, setCinemaStart, cinemaCamera, cameraReturn, setCameraReturn, info, setInfo , showMenu, setShowMenu, posterIndex,setPosterIndex}}>
       {children}
     </UserContext.Provider>
   );
