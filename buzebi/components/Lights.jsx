@@ -17,7 +17,7 @@ const Lights = () => {
       />
 
      
-      <ambientLight intensity={1} color="#ff4500" />
+      <ambientLight intensity={2} color="#ff4500" />
 
      
       <pointLight position={[2, 1, 2]} intensity={2.5} color="orange" distance={10} />

@@ -13,8 +13,16 @@ const Gate = () => {
       const whiteMarble = useTexture('./gold.jpg');
 
       const { camera } = useThree();
+      const gallery = useTexture('./gallery.png');
+      const rules = useTexture('./rules.png');
 
      const buttonRef = useRef();
+     const seasonRef = useRef();
+     const galleryRef = useRef();
+     const rulesRef = useRef();
+
+     const initialX = -19.6;
+   
 
     green.wrapS = green.wrapT = THREE.RepeatWrapping;
 
@@ -25,6 +33,7 @@ const Gate = () => {
     whiteMarble.repeat.set(1, 1);
 
     const movies = useTexture('./movie.png');
+    const season = useTexture('./season.png');
 
     useEffect(() => {
         gate.scene.traverse((child) => {
@@ -71,21 +80,20 @@ const Gate = () => {
         }
       }, []);
 
-
-    const hover = () => {
-        gsap.to(buttonRef.current.position, {
-            x: initialZ.current - 0.2, 
+      const handleHover = (ref) => {
+        gsap.to(ref.current.position, {
+            x: initialX - 0.2, 
             duration: 0.2,
             ease: "power2.out"
-          });
+        });
     }
 
-    const leave = () => {
-        gsap.to(buttonRef.current.position, {
-            x: initialZ.current,
+    const handleLeave = (ref) => {
+        gsap.to(ref.current.position, {
+            x: initialX,
             duration: 0.2,
             ease: "power2.out"
-          });
+        });
     }
 
     const startGame = () => {
@@ -118,10 +126,32 @@ const Gate = () => {
       <primitive position = {[-22, 17, 121.5]} object={lamp.scene} scale = {0.01} />
       <primitive position = {[12, 17, 124]} object={lamp.scene.clone()} scale = {0.01} />
 
-  <mesh ref = {buttonRef} position={[-19.6, 13, 135]} rotation={[0, 1.5, 0]} 
-  onPointerEnter={hover} onPointerLeave={leave} onClick={startGame}>
+  <mesh ref = {buttonRef} position={[-19.6, 16, 135]} rotation={[0, 1.5, 0]} 
+  onPointerEnter={() => handleHover(buttonRef)} 
+  onPointerLeave={() => handleLeave(buttonRef)} onClick={startGame}>
      <boxGeometry args = {[6, 2, 2.5]} />
      <meshBasicMaterial map = {movies} />
+  </mesh>
+
+  <mesh ref = {seasonRef} position={[-19.6, 13, 135]} rotation={[0, 1.5, 0]} 
+  onPointerEnter={() => handleHover(seasonRef)} 
+  onPointerLeave={() => handleLeave(seasonRef)} >
+     <boxGeometry args = {[6, 2, 2.5]} />
+     <meshBasicMaterial map = {season} />
+  </mesh>
+
+  <mesh ref = {galleryRef} position={[-19.6, 10, 135]} rotation={[0, 1.5, 0]} 
+  onPointerEnter={() => handleHover(galleryRef)} 
+  onPointerLeave={() => handleLeave(galleryRef)} >
+     <boxGeometry args = {[6, 2, 2.5]} />
+     <meshBasicMaterial map = {gallery} />
+  </mesh>
+
+  <mesh ref = {rulesRef} position={[-19.6, 7, 135]} rotation={[0, 1.5, 0]} 
+  onPointerEnter={() => handleHover(rulesRef)} 
+  onPointerLeave={() => handleLeave(rulesRef)} >
+     <boxGeometry args = {[6, 2, 2.5]} />
+     <meshBasicMaterial map = {rules} />
   </mesh>
 
  </>

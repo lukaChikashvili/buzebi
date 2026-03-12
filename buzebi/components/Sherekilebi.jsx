@@ -7,6 +7,7 @@ import GraveStone from './GraveStone';
 import gsap from 'gsap'
 import { useThree } from '@react-three/fiber';
 import Sign from './Sign';
+import Box from './Box';
 
 const Sherekilebi = ({ setActiveMovie }) => {
 
@@ -148,7 +149,7 @@ const { setInfo, setCameraReturn, cinemaCamera, setCinemaStart } = useContext(Us
 
 <Sign scale = {1.7} position = {[18, -1, 2]} rotation={[0, -1, 0]} image = "/sherekilebi.png" />
 
-
+<Box rotation = {[0, -2.5, 0]} position = {[1, 2.2, -2]} scale = {0.027} />
 
       </group>
     

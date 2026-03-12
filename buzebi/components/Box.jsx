@@ -9,7 +9,7 @@ const Box = ({ position, rotation, scale }) => {
 
   return (
    <>
-     <primitive object={boxModel.scene} position = {position} rotation = {rotation} scale = {scale} />
+     <primitive object={boxModel.scene.clone()} position = {position} rotation = {rotation} scale = {scale} />
    </>
   )
 }
