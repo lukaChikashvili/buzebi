@@ -71,14 +71,21 @@ useFrame((state, delta) => {
     { position: [130, 0, -110], scale: 0.9 },
   ], []);
 
-  
+  const [seasonNumber, setSeasonNumber] = useState(1.4);
 
 
 
 const uniforms = useRef({
   uTime: { value: 0 },
-  uSeason: { value: 1.4 }
+  uSeason: { value: seasonNumber }
 });
+
+
+// change seasons
+ 
+
+
+
 
 useFrame((state) => {
   const elapsed = state.clock.getElapsedTime();

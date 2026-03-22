@@ -1,10 +1,14 @@
 import { useGLTF, useTexture } from '@react-three/drei'
-import React, { useEffect, useLayoutEffect, useRef } from 'react'
+import React, { useContext, useEffect, useLayoutEffect, useRef } from 'react'
 import * as THREE from 'three'
 import gsap from 'gsap'
 import { useThree } from '@react-three/fiber'
+import { UserContext } from '../context/userContext'
 
 const Gate = () => {
+
+    const { setShowSeasonModal, showSeasonModal } = useContext(UserContext);
+    
       const gate = useGLTF('./gate.glb');
       const lamp = useGLTF('./lamp.glb');
 
@@ -20,28 +24,44 @@ const Gate = () => {
      const seasonRef = useRef();
      const galleryRef = useRef();
      const rulesRef = useRef();
+     const tl = useRef();
 
      const initialX = -19.6;
 
      useLayoutEffect(() => {
-      
         const buttons = [
-            buttonRef.current.position, 
-            seasonRef.current.position, 
-            galleryRef.current.position, 
-            rulesRef.current.position
+          buttonRef.current.position,
+          seasonRef.current.position,
+          galleryRef.current.position,
+          rulesRef.current.position
         ];
-       
+      
         const ctx = gsap.context(() => {
-            gsap.from(buttons, {
-                x: -25, 
-                duration: 1,
-                ease: "power2.out",
-                stagger: 0.2 
-            });
+          tl.current = gsap.timeline({ paused: true });
+      
+          tl.current.from(buttons, {
+            x: -25,
+            duration: 1,
+            ease: "power2.out",
+            stagger: 0.2
+          });
+      
+         
+          tl.current.play();
         });
+      
         return () => ctx.revert();
-    }, []);
+      }, []);
+
+      useEffect(() => {
+        if (!tl.current) return;
+      
+        if (showSeasonModal) {
+          tl.current.reverse(); 
+        } else {
+          tl.current.play(); 
+        }
+      }, [showSeasonModal]);
    
 
     green.wrapS = green.wrapT = THREE.RepeatWrapping;
@@ -127,6 +147,13 @@ const Gate = () => {
         })
     }
 
+    
+
+const showModal = () => {
+   setShowSeasonModal(!showSeasonModal);
+
+   
+}
 
   return (
  <>
@@ -155,7 +182,7 @@ const Gate = () => {
 
   <mesh ref = {seasonRef} position={[-19.6, 13, 135]} rotation={[0, 1.5, 0]} 
   onPointerEnter={() => handleHover(seasonRef)} 
-  onPointerLeave={() => handleLeave(seasonRef)} >
+  onPointerLeave={() => handleLeave(seasonRef)} onClick={showModal} >
      <boxGeometry args = {[6, 2, 2.5]} />
      <meshBasicMaterial map = {season} />
   </mesh>
@@ -173,6 +200,8 @@ const Gate = () => {
      <boxGeometry args = {[6, 2, 2.5]} />
      <meshBasicMaterial map = {rules} />
   </mesh>
+
+
 
  </>
   )
