@@ -1,14 +1,19 @@
-import { useGLTF, useTexture } from '@react-three/drei'
+import { useGLTF, useMatcapTexture, useTexture } from '@react-three/drei'
 import React, { useContext, useEffect, useLayoutEffect, useRef } from 'react'
 import * as THREE from 'three'
 import gsap from 'gsap'
 import { useThree } from '@react-three/fiber'
 import { UserContext } from '../context/userContext'
 
+
+
 const Gate = () => {
 
+    // matcam gold
+    const [matcap] = useMatcapTexture('714C30_EAD7C5_CC9265_E2B48F', 256);
+
     const { setShowSeasonModal, showSeasonModal } = useContext(UserContext);
-    
+
       const gate = useGLTF('./gate.glb');
       const lamp = useGLTF('./lamp.glb');
 
@@ -25,6 +30,19 @@ const Gate = () => {
      const galleryRef = useRef();
      const rulesRef = useRef();
      const tl = useRef();
+
+     const winter = useTexture('./winter.png');
+     const spring = useTexture('./spring.png');
+     const summer = useTexture('./summer.png');
+     const autumn = useTexture('./autumn.png');
+
+     const snowButton = useTexture('./snowButton.png');
+     const sunButton = useTexture('./sun.png');
+     const leaf = useTexture('./leaf.png');
+     const leafff = useTexture('./leafff.png');
+
+
+     winter.colorSpace = THREE.SRGBColorSpace;
 
      const initialX = -19.6;
 
@@ -121,6 +139,8 @@ const Gate = () => {
       }, []);
 
       const handleHover = (ref) => {
+        if (showSeasonModal) return;
+
         gsap.to(ref.current.position, {
             x: initialX - 0.2, 
             duration: 0.2,
@@ -129,6 +149,8 @@ const Gate = () => {
     }
 
     const handleLeave = (ref) => {
+        if (showSeasonModal) return;
+
         gsap.to(ref.current.position, {
             x: initialX,
             duration: 0.2,
@@ -200,6 +222,48 @@ const showModal = () => {
      <boxGeometry args = {[6, 2, 2.5]} />
      <meshBasicMaterial map = {rules} />
   </mesh>
+
+  {showSeasonModal && <>
+  
+    <mesh position={[-19.8, 13, 134.9]} rotation={[0, 1.5, 0]}>
+  <boxGeometry args={[8.5, 10.5, 2.25]} /> 
+  <meshMatcapMaterial matcap={matcap} />
+</mesh>
+
+
+  <mesh  position={[-19.7, 13, 135]} rotation={[0, 1.5, 0]} >
+      <boxGeometry args = {[8, 10, 2.2]} />
+      <meshBasicMaterial map = {winter}  />
+     </mesh>
+
+     <group >
+     <mesh position={[-19.4, 6, 138]} rotation={[0, 1.5, 0]}>
+        <boxGeometry args = {[1.7, 2]} />
+        <meshBasicMaterial map = {snowButton} />
+     </mesh>
+
+     <mesh position={[-19.3, 6, 136]} rotation={[0, 1.5, 0]}>
+        <boxGeometry args = {[1.7, 2]}  />
+        <meshBasicMaterial map = {sunButton} />
+     </mesh>
+
+     <mesh position={[-19.2, 6, 134]} rotation={[0, 1.5, 0]}>
+        <boxGeometry args = {[1.7, 2]}  />
+        <meshBasicMaterial map = {leaf} />
+     </mesh>
+     <mesh position={[-19, 6, 132]} rotation={[0, 1.5, 0]}>
+        <boxGeometry args = {[1.7, 2]}  />
+        <meshBasicMaterial map = {leafff} />
+     </mesh>
+     
+
+       
+    
+     </group>
+     
+     </>
+
+     }
 
 
 
