@@ -1,5 +1,5 @@
 import { useGLTF, useMatcapTexture, useTexture } from '@react-three/drei'
-import React, { useContext, useEffect, useLayoutEffect, useRef } from 'react'
+import React, { useContext, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
 import gsap from 'gsap'
 import { useThree } from '@react-three/fiber'
@@ -12,6 +12,7 @@ const Gate = () => {
     // matcam gold
     const [matcap] = useMatcapTexture('714C30_EAD7C5_CC9265_E2B48F', 256);
 
+  
     const { setShowSeasonModal, showSeasonModal } = useContext(UserContext);
 
       const gate = useGLTF('./gate.glb');
@@ -41,8 +42,14 @@ const Gate = () => {
      const leaf = useTexture('./leaf.png');
      const leafff = useTexture('./leafff.png');
 
+     const [currentSeasonTexture, setCurrentSeasonTexture] = useState(winter);
+
+
 
      winter.colorSpace = THREE.SRGBColorSpace;
+     summer.colorSpace = THREE.SRGBColorSpace;
+     autumn.colorSpace = THREE.SRGBColorSpace;
+     spring.colorSpace = THREE.SRGBColorSpace;
 
      const initialX = -19.6;
 
@@ -233,33 +240,46 @@ const showModal = () => {
 
   <mesh  position={[-19.7, 13, 135]} rotation={[0, 1.5, 0]} >
       <boxGeometry args = {[8, 10, 2.2]} />
-      <meshBasicMaterial map = {winter}  />
+      <meshBasicMaterial map = {currentSeasonTexture}  />
      </mesh>
 
-     <group >
-     <mesh position={[-19.4, 6, 138]} rotation={[0, 1.5, 0]}>
-        <boxGeometry args = {[1.7, 2]} />
-        <meshBasicMaterial map = {snowButton} />
-     </mesh>
+     <group>
+  <mesh 
+    position={[-19.4, 6, 138]} 
+    rotation={[0, 1.5, 0]}
+    onPointerOver={() => setCurrentSeasonTexture(winter)}
+  >
+    <boxGeometry args={[1.7, 2]} />
+    <meshBasicMaterial map={snowButton} />
+  </mesh>
 
-     <mesh position={[-19.3, 6, 136]} rotation={[0, 1.5, 0]}>
-        <boxGeometry args = {[1.7, 2]}  />
-        <meshBasicMaterial map = {sunButton} />
-     </mesh>
+  <mesh 
+    position={[-19.3, 6, 136]} 
+    rotation={[0, 1.5, 0]}
+    onPointerOver={() => setCurrentSeasonTexture(summer)}
+  >
+    <boxGeometry args={[1.7, 2]} />
+    <meshBasicMaterial map={sunButton} />
+  </mesh>
 
-     <mesh position={[-19.2, 6, 134]} rotation={[0, 1.5, 0]}>
-        <boxGeometry args = {[1.7, 2]}  />
-        <meshBasicMaterial map = {leaf} />
-     </mesh>
-     <mesh position={[-19, 6, 132]} rotation={[0, 1.5, 0]}>
-        <boxGeometry args = {[1.7, 2]}  />
-        <meshBasicMaterial map = {leafff} />
-     </mesh>
-     
+  <mesh 
+    position={[-19.2, 6, 134]} 
+    rotation={[0, 1.5, 0]}
+    onPointerOver={() => setCurrentSeasonTexture(spring)}
+  >
+    <boxGeometry args={[1.7, 2]} />
+    <meshBasicMaterial map={leaf} />
+  </mesh>
 
-       
-    
-     </group>
+  <mesh 
+    position={[-19, 6, 132]} 
+    rotation={[0, 1.5, 0]}
+    onPointerOver={() => setCurrentSeasonTexture(autumn)}
+  >
+    <boxGeometry args={[1.7, 2]} />
+    <meshBasicMaterial map={leafff} />
+  </mesh>
+</group>
      
      </>
 

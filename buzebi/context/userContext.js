@@ -14,7 +14,8 @@ export const UserProvider = ({ children }) => {
    const [cinemaStart, setCinemaStart] = useState(false);
    const [season, setSeason] = useState('summer');
    const [showSeasonModal, setShowSeasonModal] = useState(false);
-
+   
+   
 
     
     const [sun, setSun] = useState(0);
