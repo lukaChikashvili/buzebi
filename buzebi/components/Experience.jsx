@@ -77,7 +77,7 @@ useFrame((state, delta) => {
 
 const uniforms = useRef({
   uTime: { value: 0 },
-  uSeason: { value: 1.2 }
+  uSeason: { value: 1.4 }
 });
 
 useFrame((state) => {

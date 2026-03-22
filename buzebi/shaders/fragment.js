@@ -9,9 +9,10 @@ void main() {
   
     if(uSeason < 0.5) {
         // --- SPRING:  ---
-        vec3 low  = vec3(0.02, 0.12, 0.05); 
-        vec3 high = vec3(0.2, 0.6, 0.1);  
-        color = mix(low, high, mixLevel);
+        vec3 low  = vec3(0.01, 0.08, 0.03); 
+        vec3 high = vec3(0.08, 0.35, 0.06);  
+        color = mix(low, high, mixLevel);  
+      
   
     } else if (uSeason < 1.5) {
         // --- SUMMER:  ---
@@ -28,8 +29,8 @@ void main() {
         
     } else if (uSeason < 2.5) {
         // --- AUTUMN: ---
-        vec3 low  = vec3(0.15, 0.02, 0.02); // Dried blood/Deep wine
-        vec3 high = vec3(0.7, 0.05, 0.05);  // Vibrant crimson
+        vec3 low  = vec3(0.20, 0.18, 0.05);
+        vec3 high = vec3(0.65, 0.60, 0.20);
         color = mix(low, high, mixLevel);
   
     } else {
