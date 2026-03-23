@@ -11,10 +11,12 @@ import { posters } from './Posters'
 import { RigidBody } from '@react-three/rapier'
 import Sign from './Sign'
 import Box from './Box'
+import Balloons from './Balloons'
 
 
 const BlueMountains = ({ setActiveMovie }) => {
   const { camera} = useThree();
+
 
 
 
@@ -272,8 +274,8 @@ useEffect(() => {
    </mesh>
    </RigidBody>
 
+ <Balloons count ={25} />
     
-
 
   <Sign ref = {signRef} scale = {2} position = {[-5, 0, 14]} 
   rotation={[0, 1, 0]} image = "/cisferi.png" onPointerOver = {handleRotate}

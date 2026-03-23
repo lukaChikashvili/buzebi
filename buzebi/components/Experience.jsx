@@ -20,15 +20,17 @@ const Experience = () => {
 
   const [activeMovie, setActiveMovie] = useState(null);
 
+  
+
  
-const steps = [10, 30, 50, 60, 50, 30];
+  const steps = [0.3, 1.5, 5, 10, 20, 30, 0.3, -0.5]; 
 
 const index = useRef(0);
 const progress = useRef(0);
 
 useFrame((state, delta) => {
 
-  progress.current += delta * 0.1; 
+  progress.current += delta * 0.05;
 
   if (progress.current >= 1) {
     progress.current = 0
