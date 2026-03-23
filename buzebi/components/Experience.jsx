@@ -71,18 +71,26 @@ useFrame((state, delta) => {
     { position: [130, 0, -110], scale: 0.9 },
   ], []);
 
-  const [seasonNumber, setSeasonNumber] = useState(1.4);
-
+  const { info, setSun, sun, season } = useContext(UserContext);
 
 
 const uniforms = useRef({
   uTime: { value: 0 },
-  uSeason: { value: seasonNumber }
+  uSeason: { value: season }
 });
 
 
 // change seasons
- 
+useEffect(() => {
+  const seasonMap = {
+    summer: 1.4,
+    winter: 2.8,
+    spring: 0.3,
+    autumn: 2.3,
+  };
+
+  uniforms.current.uSeason.value = seasonMap[season];
+}, [season]);
 
 
 
@@ -98,7 +106,7 @@ useFrame((state) => {
 const house = useGLTF('./house.glb');
 
 const { camera } = useThree();
-const { info, setSun, sun } = useContext(UserContext);
+
 
 useEffect(() => {
   if(info === false) {

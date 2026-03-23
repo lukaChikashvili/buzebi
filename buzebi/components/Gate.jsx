@@ -14,7 +14,7 @@ const Gate = () => {
    
 
   
-    const { setShowSeasonModal, showSeasonModal } = useContext(UserContext);
+    const { setShowSeasonModal, showSeasonModal, setSeason } = useContext(UserContext);
 
       const gate = useGLTF('./gate.glb');
       const lamp = useGLTF('./lamp.glb');
@@ -352,6 +352,7 @@ const buttonLeave = (ref, key) => {
   ref={btnRef} 
   position={[-19.4, 6, 138]} 
   rotation={[0, 1.5, 0]}
+  onClick={() => setSeason('winter')}
   onPointerOver={() => setNextTexture(winter)}
   onPointerEnter={() => buttonHover(btnRef, 'btnRef')}
   onPointerLeave={() => buttonLeave(btnRef, 'btnRef')}
@@ -364,6 +365,7 @@ const buttonLeave = (ref, key) => {
   ref={btn2Ref} 
   position={[-19.3, 6, 136]} 
   rotation={[0, 1.5, 0]}
+  onClick={() => setSeason('summer')}
   onPointerOver={() => setNextTexture(summer)}
   onPointerEnter={() => buttonHover(btn2Ref, 'btn2Ref')}
   onPointerLeave={() => buttonLeave(btn2Ref, 'btn2Ref')}
@@ -377,6 +379,7 @@ const buttonLeave = (ref, key) => {
   position={[-19.2, 6, 134]} 
   rotation={[0, 1.5, 0]}
   onPointerOver={() => setNextTexture(spring)}
+  onClick={() => setSeason('spring')}
   onPointerEnter={() => buttonHover(btn3Ref, 'btn3Ref')}
   onPointerLeave={() => buttonLeave(btn3Ref, 'btn3Ref')}
 >
@@ -389,6 +392,7 @@ const buttonLeave = (ref, key) => {
   position={[-19, 6, 132]} 
   rotation={[0, 1.5, 0]}
   onPointerOver={() => setNextTexture(autumn)}
+  onClick={() => setSeason('autumn')}
   onPointerEnter={() => buttonHover(btn4Ref, 'btn4Ref')}
   onPointerLeave={() => buttonLeave(btn4Ref, 'btn4Ref')}
 >
