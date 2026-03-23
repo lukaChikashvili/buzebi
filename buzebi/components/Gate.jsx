@@ -11,6 +11,7 @@ const Gate = () => {
 
     // matcam gold
     const [matcap] = useMatcapTexture('714C30_EAD7C5_CC9265_E2B48F', 256);
+   
 
   
     const { setShowSeasonModal, showSeasonModal } = useContext(UserContext);
@@ -217,6 +218,76 @@ useEffect(() => {
     });
   }
 }, [nextTexture]);
+
+let btnRef = useRef();
+let btn2Ref = useRef();
+let btn3Ref = useRef();
+let btn4Ref = useRef();
+
+const initialPositions = useRef({
+  btnRef: null,
+  btn2Ref: null,
+  btn3Ref: null,
+  btn4Ref: null,
+});
+
+useEffect(() => {
+  if (
+    !btnRef.current ||
+    !btn2Ref.current ||
+    !btn3Ref.current ||
+    !btn4Ref.current
+  ) return;
+
+  initialPositions.current = {
+    btnRef: btnRef.current.position.clone(),
+    btn2Ref: btn2Ref.current.position.clone(),
+    btn3Ref: btn3Ref.current.position.clone(),
+    btn4Ref: btn4Ref.current.position.clone(),
+  };
+}, [showSeasonModal]); 
+
+// button hover effect
+const buttonHover = (ref, key) => {
+  if (!ref.current) return;
+
+  gsap.to(ref.current.position, {
+    x: initialPositions.current[key].x + 0.03,
+    y: initialPositions.current[key].y,
+    z: initialPositions.current[key].z,
+    duration: 0.3,
+    ease: "power2.out",
+  });
+
+  gsap.to(ref.current.scale, {
+    x: 1.1,
+    y: 1.1,
+    z: 1.1,
+    duration: 0.3,
+    ease: "power2.out",
+  });
+};
+
+const buttonLeave = (ref, key) => {
+  if (!ref.current) return;
+
+  gsap.to(ref.current.position, {
+    x: initialPositions.current[key].x,
+    y: initialPositions.current[key].y,
+    z: initialPositions.current[key].z,
+    duration: 0.3,
+    ease: "power2.out",
+  });
+
+  gsap.to(ref.current.scale, {
+    x: 1,
+    y: 1,
+    z: 1,
+    duration: 0.3,
+    ease: "power2.out",
+  });
+};
+
   return (
  <>
     
@@ -277,41 +348,53 @@ useEffect(() => {
      </mesh>
 
      <group>
-  <mesh 
-    position={[-19.4, 6, 138]} 
-    rotation={[0, 1.5, 0]}
-    onPointerOver={() => setNextTexture(winter)}
-  >
-    <boxGeometry args={[1.7, 2]} />
-    <meshBasicMaterial map={snowButton} />
-  </mesh>
+     <mesh
+  ref={btnRef} 
+  position={[-19.4, 6, 138]} 
+  rotation={[0, 1.5, 0]}
+  onPointerOver={() => setNextTexture(winter)}
+  onPointerEnter={() => buttonHover(btnRef, 'btnRef')}
+  onPointerLeave={() => buttonLeave(btnRef, 'btnRef')}
+>
+  <boxGeometry args={[1.7, 2]} />
+  <meshBasicMaterial map={snowButton} />
+</mesh>
 
-  <mesh 
-    position={[-19.3, 6, 136]} 
-    rotation={[0, 1.5, 0]}
-    onPointerOver={() => setNextTexture(summer)}
-  >
-    <boxGeometry args={[1.7, 2]} />
-    <meshBasicMaterial map={sunButton} />
-  </mesh>
+<mesh
+  ref={btn2Ref} 
+  position={[-19.3, 6, 136]} 
+  rotation={[0, 1.5, 0]}
+  onPointerOver={() => setNextTexture(summer)}
+  onPointerEnter={() => buttonHover(btn2Ref, 'btn2Ref')}
+  onPointerLeave={() => buttonLeave(btn2Ref, 'btn2Ref')}
+>
+  <boxGeometry args={[1.7, 2]} />
+  <meshBasicMaterial map={sunButton} />
+</mesh>
 
-  <mesh 
-    position={[-19.2, 6, 134]} 
-    rotation={[0, 1.5, 0]}
-    onPointerOver={() => setNextTexture(spring)}
-  >
-    <boxGeometry args={[1.7, 2]} />
-    <meshBasicMaterial map={leaf} />
-  </mesh>
+<mesh
+  ref={btn3Ref} 
+  position={[-19.2, 6, 134]} 
+  rotation={[0, 1.5, 0]}
+  onPointerOver={() => setNextTexture(spring)}
+  onPointerEnter={() => buttonHover(btn3Ref, 'btn3Ref')}
+  onPointerLeave={() => buttonLeave(btn3Ref, 'btn3Ref')}
+>
+  <boxGeometry args={[1.7, 2]} />
+  <meshBasicMaterial map={leaf} />
+</mesh>
 
-  <mesh 
-    position={[-19, 6, 132]} 
-    rotation={[0, 1.5, 0]}
-    onPointerOver={() => setNextTexture(autumn)}
-  >
-    <boxGeometry args={[1.7, 2]} />
-    <meshBasicMaterial map={leafff} />
-  </mesh>
+<mesh
+  ref={btn4Ref} 
+  position={[-19, 6, 132]} 
+  rotation={[0, 1.5, 0]}
+  onPointerOver={() => setNextTexture(autumn)}
+  onPointerEnter={() => buttonHover(btn4Ref, 'btn4Ref')}
+  onPointerLeave={() => buttonLeave(btn4Ref, 'btn4Ref')}
+>
+  <boxGeometry args={[1.7, 2]} />
+  <meshBasicMaterial map={leafff} />
+</mesh>
 </group>
      
      </>
