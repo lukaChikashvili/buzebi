@@ -12,6 +12,7 @@ const Gate = () => {
     // matcam gold
     const [matcap] = useMatcapTexture('714C30_EAD7C5_CC9265_E2B48F', 256);
    
+    const back = useTexture('./back.png');
 
   
     const { setShowSeasonModal, showSeasonModal, setSeason } = useContext(UserContext);
@@ -288,6 +289,35 @@ const buttonLeave = (ref, key) => {
   });
 };
 
+const groupRef = useRef();
+
+useEffect(() => {
+  if (!showSeasonModal || !groupRef.current) return;
+
+  
+  gsap.from(groupRef.current.position, {
+    x: groupRef.current.position.x - 5,
+    duration: 1,
+    ease: "power2.out",
+    delay: 0.8,
+  });
+}, [showSeasonModal]);
+
+let backRef = useRef();
+
+const handleBack = () => {
+  if (!groupRef.current) return;
+
+  gsap.to(groupRef.current.position, {
+    x: groupRef.current.position.x - 5,
+    duration: 0.8,
+    ease: "power2.in",
+    onComplete: () => {
+      setShowSeasonModal(false);
+    }
+  });
+};
+ 
   return (
  <>
     
@@ -336,7 +366,10 @@ const buttonLeave = (ref, key) => {
 
   {showSeasonModal && <>
   
-    <mesh position={[-19.8, 13, 134.9]} rotation={[0, 1.5, 0]}>
+   
+
+<group ref={groupRef}>
+<mesh position={[-19.8, 13, 134.9]} rotation={[0, 1.5, 0]}>
   <boxGeometry args={[8.5, 10.5, 2.25]} /> 
   <meshMatcapMaterial matcap={matcap} />
 </mesh>
@@ -347,7 +380,7 @@ const buttonLeave = (ref, key) => {
       <meshBasicMaterial map = {currentSeasonTexture}  />
      </mesh>
 
-     <group>
+   
      <mesh
   ref={btnRef} 
   position={[-19.4, 6, 138]} 
@@ -399,6 +432,13 @@ const buttonLeave = (ref, key) => {
   <boxGeometry args={[1.7, 2]} />
   <meshBasicMaterial map={leafff} />
 </mesh>
+
+<mesh ref = {backRef} position={[-19.9, 19.1, 135]} rotation={[0, 1.5, 0]} 
+  onPointerEnter={() => handleHover(backRef)} 
+  onPointerLeave={() => handleLeave(backRef)} onClick={handleBack}>
+     <boxGeometry args = {[4, 1.3, 2.5]} />
+     <meshBasicMaterial map = {back} />
+  </mesh>
 </group>
      
      </>
