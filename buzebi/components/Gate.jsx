@@ -184,6 +184,39 @@ const showModal = () => {
    
 }
 
+const frontRef = useRef();
+const [nextTexture, setNextTexture] = useState(null);
+
+useEffect(() => {
+  if (!currentSeasonTexture || !frontRef.current) return;
+
+  
+  if (nextTexture) {
+
+    const tempMat = frontRef.current.material.clone();
+    tempMat.map = nextTexture;
+    tempMat.transparent = true;
+    tempMat.opacity = 0;
+
+    const tempMesh = new THREE.Mesh(frontRef.current.geometry, tempMat);
+    tempMesh.position.copy(frontRef.current.position);
+    tempMesh.rotation.copy(frontRef.current.rotation);
+    frontRef.current.parent.add(tempMesh);
+
+
+    gsap.to(tempMat, {
+      opacity: 1,
+      duration: 0.5,
+      ease: "power2.out",
+      onComplete: () => {
+        frontRef.current.material.map = nextTexture;
+        frontRef.current.material.needsUpdate = true;
+        frontRef.current.parent.remove(tempMesh);
+        setNextTexture(null); 
+      }
+    });
+  }
+}, [nextTexture]);
   return (
  <>
     
@@ -238,7 +271,7 @@ const showModal = () => {
 </mesh>
 
 
-  <mesh  position={[-19.7, 13, 135]} rotation={[0, 1.5, 0]} >
+  <mesh   ref={frontRef} position={[-19.7, 13, 135]} rotation={[0, 1.5, 0]} >
       <boxGeometry args = {[8, 10, 2.2]} />
       <meshBasicMaterial map = {currentSeasonTexture}  />
      </mesh>
@@ -247,7 +280,7 @@ const showModal = () => {
   <mesh 
     position={[-19.4, 6, 138]} 
     rotation={[0, 1.5, 0]}
-    onPointerOver={() => setCurrentSeasonTexture(winter)}
+    onPointerOver={() => setNextTexture(winter)}
   >
     <boxGeometry args={[1.7, 2]} />
     <meshBasicMaterial map={snowButton} />
@@ -256,7 +289,7 @@ const showModal = () => {
   <mesh 
     position={[-19.3, 6, 136]} 
     rotation={[0, 1.5, 0]}
-    onPointerOver={() => setCurrentSeasonTexture(summer)}
+    onPointerOver={() => setNextTexture(summer)}
   >
     <boxGeometry args={[1.7, 2]} />
     <meshBasicMaterial map={sunButton} />
@@ -265,7 +298,7 @@ const showModal = () => {
   <mesh 
     position={[-19.2, 6, 134]} 
     rotation={[0, 1.5, 0]}
-    onPointerOver={() => setCurrentSeasonTexture(spring)}
+    onPointerOver={() => setNextTexture(spring)}
   >
     <boxGeometry args={[1.7, 2]} />
     <meshBasicMaterial map={leaf} />
@@ -274,7 +307,7 @@ const showModal = () => {
   <mesh 
     position={[-19, 6, 132]} 
     rotation={[0, 1.5, 0]}
-    onPointerOver={() => setCurrentSeasonTexture(autumn)}
+    onPointerOver={() => setNextTexture(autumn)}
   >
     <boxGeometry args={[1.7, 2]} />
     <meshBasicMaterial map={leafff} />
