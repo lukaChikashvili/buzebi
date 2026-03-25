@@ -15,8 +15,34 @@ import Romani from "./Romani"
 import Cinema from "./Cinema"
 import Natvris from "./Natvris"
 import Gate from "./Gate"
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 const Experience = () => {
+
+  const { camera, viewport } = useThree();
+
+  useEffect(() => {
+   
+    if (viewport.width < 250 && camera.position.z > 140) {
+      gsap.to(camera.rotation, {
+        y: Math.PI / 6, 
+        duration: 0.5,
+        ease: "power2.inOut"
+      });
+    } else {
+     
+      gsap.to(camera.rotation, {
+        y: 0,
+        duration: 0.5,
+        ease: "power2.inOut"
+      });
+    }
+  }, [viewport.width, camera.position.z]);
+
+
+
+
+
 
   const [activeMovie, setActiveMovie] = useState(null);
 
@@ -122,7 +148,7 @@ useFrame((state) => {
 
 const house = useGLTF('./house.glb');
 
-const { camera } = useThree();
+
 
 
 useEffect(() => {

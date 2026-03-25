@@ -129,7 +129,7 @@ const audioRef = useRef(null);
 )}
 
 
-      <Canvas  camera={{ position: [
+      <Canvas style ={{width: "100vw", height: "100vh"}}  camera={{ position: [
 
 -5, 
 12, 
@@ -141,10 +141,13 @@ const audioRef = useRef(null);
         
         <Physics gravity={[0, -9.81, 0]}>
        <Menu isOpen={showMenu} />
-   
+
        <Experience />
        </Physics>
        <Lights />
+
+
+      
       </Canvas>
 
       

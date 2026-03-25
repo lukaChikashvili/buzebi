@@ -440,7 +440,9 @@ const handleBack = () => {
      <meshBasicMaterial map = {back} />
   </mesh>
 </group>
-     
+
+
+
      </>
 
      }
