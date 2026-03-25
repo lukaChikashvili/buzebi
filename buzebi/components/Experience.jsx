@@ -73,7 +73,22 @@ useFrame((state, delta) => {
     { position: [130, 0, -110], scale: 0.9 },
   ], []);
 
-  const { info, setSun, sun, season } = useContext(UserContext);
+  const { info, setSun, sun, season , homeCamera} = useContext(UserContext);
+
+  // return to home inital position
+  useEffect(() => {
+      if(homeCamera) {
+        gsap.to(camera.position, {
+          x: -5,
+          y: 12,
+          z: 150,
+          duration: 1,
+          delay: 0.2,
+          ease: "power2.inOut"
+        });
+
+      }
+  }, [homeCamera]);
 
 
 const uniforms = useRef({

@@ -14,7 +14,7 @@ export const UserProvider = ({ children }) => {
    const [cinemaStart, setCinemaStart] = useState(false);
    const [season, setSeason] = useState('summer');
    const [showSeasonModal, setShowSeasonModal] = useState(false);
-   
+   const [homeCamera, setHomeCamera] = useState(false);
    
 
     
@@ -43,8 +43,10 @@ export const UserProvider = ({ children }) => {
  
 
 
+
+
   return (
-    <UserContext.Provider value={{showSeasonModal, setShowSeasonModal, season, setSeason, sun, setSun, cinemaStart, setCinemaStart, cinemaCamera, cameraReturn, setCameraReturn, info, setInfo , showMenu, setShowMenu, posterIndex,setPosterIndex}}>
+    <UserContext.Provider value={{homeCamera, setHomeCamera, showSeasonModal, setShowSeasonModal, season, setSeason, sun, setSun, cinemaStart, setCinemaStart, cinemaCamera, cameraReturn, setCameraReturn, info, setInfo , showMenu, setShowMenu, posterIndex,setPosterIndex}}>
       {children}
     </UserContext.Provider>
   );

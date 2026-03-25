@@ -12,7 +12,8 @@ import mount from '../public/mountImage.jpg'
 import gsap from "gsap";
 import Menu from "../components/Menu";
 import { posters } from "../components/Posters";
-
+import {  HomeIcon } from 'lucide-react'
+import { Camera } from "three";
 
 export default function Home() {
   
@@ -22,7 +23,7 @@ export default function Home() {
 
 
 
-const { info, showMenu, setShowMenu, posterIndex, cinemaStart  } = useContext(UserContext);
+const { info, showMenu, setShowMenu, posterIndex, cinemaStart , setHomeCamera, homeCamera } = useContext(UserContext);
 
 
 const audioRef = useRef(null);
@@ -94,7 +95,8 @@ const audioRef = useRef(null);
   return (
     <>
      <div className="fixed inset-0 overflow-hidden">
-       <div className="absolute top-4 right-8 z-10">
+       <div className="absolute top-4 right-8 z-10 flex items-center justify-center gap-6">
+       <p className = "-mt-3 text-white curosr-pointer" onClick={() => setHomeCamera(!homeCamera)}><HomeIcon /></p>
        <p
   onClick={() => {
     setShowMenu(!showMenu);
@@ -105,7 +107,11 @@ const audioRef = useRef(null);
         ⦿⦿⦿
         
           </p> 
+        
        </div>
+
+
+
 
 
 
