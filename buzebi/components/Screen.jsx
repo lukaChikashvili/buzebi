@@ -1,13 +1,18 @@
 import { useFrame, useThree } from "@react-three/fiber";
-import React, { forwardRef, useEffect, useMemo, useState } from "react";
+import React, { forwardRef, useContext, useEffect, useMemo, useState } from "react";
 import * as THREE from "three";
 import gsap from 'gsap'
+import { UserContext } from "../context/userContext";
 
 const Screen = forwardRef(({ position, size = [12, 6.2], movieSrc }, ref) => {
 
   const { camera } = useThree();
 
   const [isFullScreen, setIsFullScreen] = useState(false);
+
+  const { stopMovie } = useContext(UserContext);
+
+  
 
   // full screen
   const fullScreen = () => {
@@ -53,6 +58,13 @@ const Screen = forwardRef(({ position, size = [12, 6.2], movieSrc }, ref) => {
   });
 
   useEffect(() => {
+    if (stopMovie && video) {
+      video.pause();
+      video.currentTime = 0;
+    }
+  }, [stopMovie, video]);
+
+  useEffect(() => {
     return () => {
       video?.pause();
       videoTexture?.dispose();
@@ -60,6 +72,8 @@ const Screen = forwardRef(({ position, size = [12, 6.2], movieSrc }, ref) => {
   }, [video, videoTexture]);
 
   if (!videoTexture) return null;
+
+  
 
   return (
     <mesh ref={ref} position={position} onClick = {fullScreen}>

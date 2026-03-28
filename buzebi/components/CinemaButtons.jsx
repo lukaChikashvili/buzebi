@@ -1,8 +1,10 @@
 import { useTexture } from '@react-three/drei'
-import React, { useRef } from 'react'
+import React, { useContext, useRef } from 'react'
 import gsap from 'gsap'
+import { useThree } from '@react-three/fiber';
+import { UserContext } from '../context/userContext';
 
-const CinemaButton = ({ position, texture }) => {
+const CinemaButton = ({ position, texture, onClick }) => {
   const meshRef = useRef();
 
   const handlePointerOver = () => {
@@ -67,6 +69,7 @@ const CinemaButton = ({ position, texture }) => {
       onPointerOut={handlePointerOut}
       onPointerDown={handlePointerDown}
       onPointerUp={handlePointerUp}
+      onClick={onClick}
     >
       <boxGeometry args={[1, 0.5, 0.8]} />
       <meshBasicMaterial map={texture} />
@@ -80,17 +83,35 @@ const CinemaButtons = () => {
   const full = useTexture('./full.png');
   const rate = useTexture('./rate.png');
 
+  const { camera  } = useThree();
+  const { setStopMovie } = useContext(UserContext);
+
+  const goBack = () => {
+    setStopMovie(true);
+
+     gsap.to(camera.position, {
+        x: 1.70,
+        y: 9.66,
+        z: 22,
+        duration: 1,
+        delay: 0.6,
+        ease: "power2.inOut"
+     })
+  }
+
   const buttons = [
-    { position: [6.39, 4.5, -2.96], texture: backBtn },
+    { position: [6.39, 4.5, -2.96], texture: backBtn, onClick: goBack  },
     { position: [6.39, 3.9, -2.96], texture: list },
     { position: [6.39, 3.3, -2.96], texture: full },
     { position: [6.39, 2.7, -2.96], texture: rate },
   ];
 
+  
+
   return (
     <group position={[0, -0.1, 0]}>
       {buttons.map((btn, i) => (
-        <CinemaButton key={i} position={btn.position} texture={btn.texture} />
+        <CinemaButton key={i} position={btn.position} texture={btn.texture} onClick={btn.onClick} />
       ))}
     </group>
   );
