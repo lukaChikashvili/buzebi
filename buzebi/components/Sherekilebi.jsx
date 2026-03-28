@@ -31,7 +31,7 @@ const { setInfo, setCameraReturn, cinemaCamera, setCinemaStart } = useContext(Us
       requestAnimationFrame(() => {
        gsap.fromTo(
          textRef.current,
-         { opacity: 0, y: 30, scale: 0.8 },
+         { opacity: 0, y: 30, x: 0, scale: 0.8 },
          { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: 'power3.out' }
        )
      })
@@ -128,8 +128,8 @@ const { setInfo, setCameraReturn, cinemaCamera, setCinemaStart } = useContext(Us
       />
 
       
-{text && <Html className='text'>
-           <h1  style={{ opacity: 0, transform: 'translateY(30px) scale(0.8)' }} ref = {textRef} className='-mt-48  -ml-4 w-48 text-center border-2  border-white bg-purple-300 rounded-md shadow-lg px-2 py-2'>
+{text && <Html className='text'  position={[-4, 1.5, 4]}>
+           <h1  style={{ opacity: 0, transform: 'translateY(30px) scale(0.8) ' }} ref = {textRef} className='-mt-48  -ml-4 w-48 text-center border-2  border-white bg-purple-300 rounded-md shadow-lg px-2 py-2'>
               ფილმის შესახებ
            </h1>
         </Html>}
