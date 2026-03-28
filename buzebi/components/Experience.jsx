@@ -15,7 +15,7 @@ import Romani from "./Romani"
 import Cinema from "./Cinema"
 import Natvris from "./Natvris"
 import Gate from "./Gate"
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+
 
 const Experience = () => {
 
@@ -29,14 +29,17 @@ const Experience = () => {
         duration: 0.5,
         ease: "power2.inOut"
       });
-    } else {
-     
+    } 
+  
+    else if (camera.position.z > 130) {
       gsap.to(camera.rotation, {
         y: 0,
         duration: 0.5,
         ease: "power2.inOut"
       });
     }
+    
+
   }, [viewport.width, camera.position.z]);
 
 
@@ -154,9 +157,9 @@ const house = useGLTF('./house.glb');
 useEffect(() => {
   if(info === false) {
    gsap.to(camera.position, {
-     x: 2.74,
-     y: 10.12,
-     z: 24.025,
+     x: 1.70,
+     y: 9.66,
+     z: 22,
      duration: 1.2,
      ease: "power3.inOut"
    })

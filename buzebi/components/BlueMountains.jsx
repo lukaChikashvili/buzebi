@@ -15,7 +15,10 @@ import Balloons from './Balloons'
 
 
 const BlueMountains = ({ setActiveMovie }) => {
-  const { camera} = useThree();
+  const { camera, viewport} = useThree();
+
+  let deskGroup = useRef();
+
 
 
 
@@ -167,9 +170,9 @@ const BlueMountains = ({ setActiveMovie }) => {
 // show info
 const showInfo = () => {
   setCameraReturn({
-    x: 1.7,
-    y: 8.66,
-    z: 20.5
+    x: 1.70,
+    y: 9.66,
+    z: 22
   });
 
 
@@ -238,12 +241,12 @@ useEffect(() => {
 />
 
      
-
+    <group ref = {deskGroup}>
      <primitive object={deskModel.scene}  rotation = {[0, -0.5, 0]} position = {[6, 5.5, 12]}  scale = {0.10} />
       <primitive onClick = {showInfo} onPointerOver = {appearText} onPointerOut = {hideText}  ref = {bookRef} object={book.scene} scale = {3.5} rotation = {[0, 0.7, 0]} position = {[3, 8, 10]} />
 
      <primitive ref = {tvRef} onClick = {handleTv} object={tv.scene} scale = {0.06} rotation = {[0, 0.8, 0]} position = {[6.5, 7.5, 12]}  />
-
+     </group>
      
       <primitive object={table.scene} scale = {0.07} position = {[-7, 0.7, 7]} />
      <primitive object={phone.scene} scale = {11} position = {[-7, 6.7, 7]} /> 

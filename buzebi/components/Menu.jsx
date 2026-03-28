@@ -30,17 +30,19 @@ const MenuChainGroup = forwardRef(({ position, posterTexture, onClick }, ref) =>
 });
 
 const Menu = ({ isOpen }) => {
-  const { camera } = useThree();
+  const { camera, viewport } = useThree();
   const group = useRef();
   const chainRefs = useRef([]);
   const { showMenu, setPosterIndex } = useContext(UserContext);
+
+  const isMobile = viewport.width < 250;
 
   const arrowModel = useGLTF('./arrow.glb');
 
   const posterTextures = posters.map(p => useTexture(p.img));
 
   const posterCameraPositions = [
-    { x: 1.70, y: 9.66, z: 22 },
+    { x: 1.70, y: isMobile ? 100 : 9.66, z:  22},
     { x: -11.97, y: 9.51, z: -7.37 },
     { x: 64.54, y: 12.54, z: 21 },
     { x: 85, y: 8, z: 40 }
