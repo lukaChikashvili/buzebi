@@ -3,6 +3,7 @@ import Screen from "./Screen";
 import { useGLTF, useTexture } from "@react-three/drei";
 import * as THREE from 'three'
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
+import CinemaButtons from "./CinemaButtons";
 
 
 const Cinema = ({ screenProps }) => {
@@ -116,6 +117,8 @@ const Cinema = ({ screenProps }) => {
 
     
       <Screen  {...screenProps}  />
+
+      <CinemaButtons />
     </group>
   );
 };
