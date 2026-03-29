@@ -84,7 +84,7 @@ const CinemaButtons = () => {
   const rate = useTexture('./rate.png');
 
   const { camera  } = useThree();
-  const { setStopTheMovie, setAllMovies, allMovies } = useContext(UserContext);
+  const { setStopTheMovie, setAllMovies, allMovies , } = useContext(UserContext);
 
   const goBack = () => {
     setStopTheMovie(true);

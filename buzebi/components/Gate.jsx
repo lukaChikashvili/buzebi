@@ -15,7 +15,7 @@ const Gate = () => {
     const back = useTexture('./back.png');
 
   
-    const { setShowSeasonModal, showSeasonModal, setSeason } = useContext(UserContext);
+    const { setShowSeasonModal, showSeasonModal, setSeason, setAllMovies } = useContext(UserContext);
 
       const gate = useGLTF('./gate.glb');
       const lamp = useGLTF('./lamp.glb');
@@ -352,7 +352,7 @@ const handleBack = () => {
 
   <mesh ref = {galleryRef} position={[-19.6, 10, 135]} rotation={[0, 1.5, 0]} 
   onPointerEnter={() => handleHover(galleryRef)} 
-  onPointerLeave={() => handleLeave(galleryRef)} >
+  onPointerLeave={() => handleLeave(galleryRef)} onClick={() => setAllMovies(true)} >
      <boxGeometry args = {[6, 2, 2.5]} />
      <meshBasicMaterial map = {gallery} />
   </mesh>
