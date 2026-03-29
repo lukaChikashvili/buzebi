@@ -1,6 +1,6 @@
 "use client"
 import { useThree } from "@react-three/fiber";
-import { createContext, useState } from "react";
+import { createContext, useRef, useState } from "react";
 import { posters } from "../components/Posters";
 import gsap from 'gsap'
 
@@ -15,7 +15,8 @@ export const UserProvider = ({ children }) => {
    const [season, setSeason] = useState('summer');
    const [showSeasonModal, setShowSeasonModal] = useState(false);
    const [homeCamera, setHomeCamera] = useState(false);
-  const [stopMovie, setStopMovie] = useState(false);
+   const stopMovie = useRef(null);
+   const [stopTheMovie, setStopTheMovie] = useState(false);
 
     
     const [sun, setSun] = useState(0);
@@ -46,7 +47,7 @@ export const UserProvider = ({ children }) => {
 
 
   return (
-    <UserContext.Provider value={{stopMovie, setStopMovie, homeCamera, setHomeCamera, showSeasonModal, setShowSeasonModal, season, setSeason, sun, setSun, cinemaStart, setCinemaStart, cinemaCamera, cameraReturn, setCameraReturn, info, setInfo , showMenu, setShowMenu, posterIndex,setPosterIndex}}>
+    <UserContext.Provider value={{stopTheMovie, setStopTheMovie, stopMovie, homeCamera, setHomeCamera, showSeasonModal, setShowSeasonModal, season, setSeason, sun, setSun, cinemaStart, setCinemaStart, cinemaCamera, cameraReturn, setCameraReturn, info, setInfo , showMenu, setShowMenu, posterIndex,setPosterIndex}}>
       {children}
     </UserContext.Provider>
   );

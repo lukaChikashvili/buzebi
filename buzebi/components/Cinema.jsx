@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import Screen from "./Screen";
 import { useGLTF, useTexture } from "@react-three/drei";
 import * as THREE from 'three'
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import CinemaButtons from "./CinemaButtons";
+import { UserContext } from "../context/userContext";
 
 
 const Cinema = ({ screenProps }) => {
@@ -15,7 +16,7 @@ const Cinema = ({ screenProps }) => {
     const cloth = useTexture('./cloth.jpg');
     const poster = useTexture('./bluePoster.webp');
 
-
+    const {  stopTheMovie } = useContext(UserContext);
 
     //  models
     const sofa = useGLTF('./sofa.glb');
@@ -116,7 +117,7 @@ const Cinema = ({ screenProps }) => {
 
 
     
-      <Screen  {...screenProps}  />
+     {stopTheMovie ? <> </> :<Screen  {...screenProps}  /> } 
 
       <CinemaButtons />
     </group>

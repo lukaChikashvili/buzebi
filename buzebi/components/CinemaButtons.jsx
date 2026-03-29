@@ -84,10 +84,10 @@ const CinemaButtons = () => {
   const rate = useTexture('./rate.png');
 
   const { camera  } = useThree();
-  const { setStopMovie } = useContext(UserContext);
+  const { setStopTheMovie } = useContext(UserContext);
 
   const goBack = () => {
-    setStopMovie(true);
+    setStopTheMovie(true);
 
      gsap.to(camera.position, {
         x: 1.70,
@@ -96,7 +96,9 @@ const CinemaButtons = () => {
         duration: 1,
         delay: 0.6,
         ease: "power2.inOut"
-     })
+     });
+
+     
   }
 
   const buttons = [
