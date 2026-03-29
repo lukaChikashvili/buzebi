@@ -38,5 +38,32 @@ export const posters = [
         id: 6,
         name: "ბაში-აჩუკი",
         img: "/bashi.jpg"
-    }
+    },
+
+
+    {
+        id: 7,
+        name: "ჯარისკაცის მამა",
+        img: "/jari.jpg"
+    },
+
+    {
+        id: 8,
+        name: "ჭრიჭინა",
+        img: "/chrichina.jpg"
+    },
+
+    {
+        id: 9,
+        name: "უდიპლომო სასიძო",
+        img: "/udiplomo.jpg"
+    },
+
+    {
+        id: 10,
+        name: "ფეოლა",
+        img: "/feola.jpg"
+    },
+
+
 ]

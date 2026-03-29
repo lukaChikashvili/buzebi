@@ -18,6 +18,7 @@ export const UserProvider = ({ children }) => {
    const stopMovie = useRef(null);
    const [stopTheMovie, setStopTheMovie] = useState(false);
 
+    const [allMovies, setAllMovies] = useState(false);
     
     const [sun, setSun] = useState(0);
 
@@ -47,7 +48,7 @@ export const UserProvider = ({ children }) => {
 
 
   return (
-    <UserContext.Provider value={{stopTheMovie, setStopTheMovie, stopMovie, homeCamera, setHomeCamera, showSeasonModal, setShowSeasonModal, season, setSeason, sun, setSun, cinemaStart, setCinemaStart, cinemaCamera, cameraReturn, setCameraReturn, info, setInfo , showMenu, setShowMenu, posterIndex,setPosterIndex}}>
+    <UserContext.Provider value={{allMovies, setAllMovies, stopTheMovie, setStopTheMovie, stopMovie, homeCamera, setHomeCamera, showSeasonModal, setShowSeasonModal, season, setSeason, sun, setSun, cinemaStart, setCinemaStart, cinemaCamera, cameraReturn, setCameraReturn, info, setInfo , showMenu, setShowMenu, posterIndex,setPosterIndex}}>
       {children}
     </UserContext.Provider>
   );

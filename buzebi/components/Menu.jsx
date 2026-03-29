@@ -15,7 +15,7 @@ const MenuChainGroup = forwardRef(({ position, posterTexture, onClick }, ref) =>
       <primitive object={chain.scene.clone()} scale={0.4} position={[4, 4, -2]} />
 
       <mesh
-        position={[0, 4.3, 0]}
+        position={[1, 4.3, 0]}
         rotation={[-1.6, 0, 0.3]}
         onPointerDown={(e) => {
           e.stopPropagation();

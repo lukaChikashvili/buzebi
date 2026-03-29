@@ -84,7 +84,7 @@ const CinemaButtons = () => {
   const rate = useTexture('./rate.png');
 
   const { camera  } = useThree();
-  const { setStopTheMovie } = useContext(UserContext);
+  const { setStopTheMovie, setAllMovies, allMovies } = useContext(UserContext);
 
   const goBack = () => {
     setStopTheMovie(true);
@@ -98,12 +98,12 @@ const CinemaButtons = () => {
         ease: "power2.inOut"
      });
 
-     
+
   }
 
   const buttons = [
     { position: [6.39, 4.5, -2.96], texture: backBtn, onClick: goBack  },
-    { position: [6.39, 3.9, -2.96], texture: list },
+    { position: [6.39, 3.9, -2.96], texture: list , onClick: () => setAllMovies(!allMovies)},
     { position: [6.39, 3.3, -2.96], texture: full },
     { position: [6.39, 2.7, -2.96], texture: rate },
   ];

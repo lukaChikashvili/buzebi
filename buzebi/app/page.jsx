@@ -14,6 +14,7 @@ import Menu from "../components/Menu";
 import { posters } from "../components/Posters";
 import {  HomeIcon } from 'lucide-react'
 import { Camera } from "three";
+import MovieList from "../components/MovieList";
 
 export default function Home() {
   
@@ -23,7 +24,8 @@ export default function Home() {
 
 
 
-const { info, showMenu, setShowMenu, posterIndex, cinemaStart , setHomeCamera, homeCamera } = useContext(UserContext);
+const { info, showMenu, setShowMenu, posterIndex, cinemaStart , setHomeCamera, 
+  homeCamera , allMovies} = useContext(UserContext);
 
 
 const audioRef = useRef(null);
@@ -90,6 +92,7 @@ const audioRef = useRef(null);
 
 
 
+
   
 
   return (
@@ -114,7 +117,7 @@ const audioRef = useRef(null);
 
 
 
-
+{allMovies && <MovieList />}
       
 
 
